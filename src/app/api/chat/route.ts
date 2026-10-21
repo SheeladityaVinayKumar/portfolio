@@ -88,7 +88,7 @@ export async function POST(req: Request) {
     const grokBaseUrl = (process.env.GROK_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
     const grokModel = process.env.GROK_MODEL || "grok-2-latest";
 
-    // If Grok API key is configured, call Grok API
+    // If Grok API key is configured, call Grok / AI API
     if (grokApiKey && grokApiKey !== "your_grok_api_key_here") {
       try {
         const systemPrompt = buildSystemPrompt();
@@ -100,14 +100,31 @@ export async function POST(req: Request) {
             content: item.text
           }));
 
-        const response = await fetch(`${grokBaseUrl}/chat/completions`, {
+        // Auto-detect provider if default grokBaseUrl is used:
+        let endpoint = `${grokBaseUrl}/chat/completions`;
+        let modelToUse = grokModel;
+
+        if (!process.env.GROK_BASE_URL) {
+          if (grokApiKey.startsWith("gsk_")) {
+            endpoint = "https://api.groq.com/openai/v1/chat/completions";
+            modelToUse = process.env.GROK_MODEL || "llama-3.3-70b-versatile";
+          } else if (grokApiKey.startsWith("sk-or-")) {
+            endpoint = "https://openrouter.ai/api/v1/chat/completions";
+            modelToUse = process.env.GROK_MODEL || "x-ai/grok-2-1212";
+          } else if (grokApiKey.startsWith("AIzaSy")) {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+            modelToUse = process.env.GROK_MODEL || "gemini-2.0-flash";
+          }
+        }
+
+        const response = await fetch(endpoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${grokApiKey}`
           },
           body: JSON.stringify({
-            model: grokModel,
+            model: modelToUse,
             messages: [
               { role: "system", content: systemPrompt },
               ...formattedHistory,
@@ -124,14 +141,30 @@ export async function POST(req: Request) {
           if (reply) {
             return NextResponse.json({
               reply,
-              model: grokModel,
+              model: modelToUse,
               isRealAI: true
             });
           }
         }
 
         const errorText = await response.text();
-        console.warn(`[Grok API Response Error]: ${response.status} - ${errorText}`);
+        console.warn(`[AI API Response Error]: ${response.status} - ${errorText}`);
+
+        let errorMessage = errorText;
+        try {
+          const parsed = JSON.parse(errorText);
+          errorMessage = parsed.error?.message || parsed.error || parsed.message || errorText;
+        } catch {
+          // keep as raw text
+        }
+
+        return NextResponse.json({
+          reply: `⚠️ **AI Model Connection Notice**:\n\nThe API provider returned an error: **"${errorMessage}"** (HTTP ${response.status}).\n\n• The key provided (\`${grokApiKey.slice(0, 8)}...\`) was rejected by the API endpoint.\n• If you are using **xAI Grok**, official API keys start with \`xai-\` from [console.x.ai](https://console.x.ai).\n• If you are using **Groq (Free)**, keys start with \`gsk_\` from [console.groq.com](https://console.groq.com).\n• If you are using **Google Gemini (Free)**, keys start with \`AIzaSy\` from [aistudio.google.com](https://aistudio.google.com).\n\n*Please update \`GROK_API_KEY\` in your \`.env.local\` with a valid secret key.*`,
+          model: "diagnostic",
+          isRealAI: false,
+          needsApiKey: true,
+          error: errorMessage
+        });
       } catch (err) {
         console.error("[Grok API Network Error]:", err);
       }
