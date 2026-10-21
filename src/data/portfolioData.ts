@@ -14,6 +14,12 @@ export interface ProjectItem {
   solution: string;
   highlights: string[];
   metrics?: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  appUrl?: string;
+  appStoreUrl?: string;
+  repoType?: "public" | "internal" | "client";
+  accessNote?: string;
 }
 
 export interface SkillCategory {
@@ -33,6 +39,7 @@ export const PORTFOLIO_DATA = {
     location: "India (Open to Remote, Hybrid & Relocation)",
     email: "sheeladitya04@gmail.com",
     avatar: "/assets/images/sheeladitya.png",
+    resumeUrl: "https://drive.google.com/file/d/1jTR9iillcBNF2ypTknpiXkBp7BIO6kzo/view?usp=sharing",
     githubUrl: "https://github.com/SheeladityaVinayKumar",
     linkedinUrl: "https://linkedin.com",
     educationBrief: "B.Tech CSE · BTKIT (2023–2027)",
@@ -140,7 +147,10 @@ export const PORTFOLIO_DATA = {
         "Candidate self-assessment quiz engine evaluating core programming competencies.",
         "Role-based access separating trainee progress views from administrator evaluation panels.",
         "Interactive AI Mentor assistant concept for on-demand technical guidance."
-      ]
+      ],
+      githubUrl: "https://github.com/SheeladityaVinayKumar/talent-evaluator",
+      demoUrl: "https://github.com/SheeladityaVinayKumar/talent-evaluator",
+      repoType: "public"
     },
     {
       id: "sankalptaru-huge",
@@ -165,7 +175,11 @@ export const PORTFOLIO_DATA = {
         "Fixed runtime permission prompts for camera, storage, and geolocation services.",
         "Conducted thorough testing across diverse Android and iOS device configurations.",
         "Integrated seamlessly with existing team Git/GitHub workflows following reviewer feedback."
-      ]
+      ],
+      appUrl: "https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru",
+      appStoreUrl: "https://apps.apple.com/in/app/sankalptaru-huge/id1462571187",
+      repoType: "internal",
+      accessNote: "ColoredCow / SankalpTaru Production (Enterprise Codebase)"
     },
     {
       id: "g1-ground-team",
@@ -190,7 +204,9 @@ export const PORTFOLIO_DATA = {
         "Resolved an intermittent authentication failure preventing field operators from logging in.",
         "Improved user error feedback with clear, actionable status messages.",
         "Protected backend API servers from corrupted and oversized multipart payloads."
-      ]
+      ],
+      repoType: "internal",
+      accessNote: "Internal Field Operations App (Confidential Enterprise Repo)"
     },
     {
       id: "sankalptaru-web",
@@ -215,7 +231,10 @@ export const PORTFOLIO_DATA = {
         "Troubleshot and fixed multi-device CSS breakpoint glitches across key landing pages.",
         "Enhanced form submission responsiveness and front-end asset loading times.",
         "Collaborated via GitHub PR workflows incorporating senior engineering reviews."
-      ]
+      ],
+      demoUrl: "https://sankalptaru.org",
+      repoType: "client",
+      accessNote: "Live Ecological Platform (sankalptaru.org)"
     }
   ] as ProjectItem[],
 

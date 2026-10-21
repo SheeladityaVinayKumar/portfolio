@@ -13,33 +13,102 @@ export class AIAgentEngine {
   public respond(query: string): string {
     const q = query.toLowerCase().trim();
 
-    // 1. Projects
-    if (q.includes("project") || q.includes("built") || q.includes("apps") || q.includes("work")) {
-      if (q.includes("talent") || q.includes("evaluator") || q.includes("mentor") || q.includes("onboard")) {
-        return `**Talent Evaluator — Onboarding Platform & AI Mentor** is Sheeladitya's highlight project:
-• **Structured Onboarding**: Interactive modules, candidate self-assessments, and distinct candidate vs. admin dashboards.
-• **AI Mentor Concept**: Trainees can ask questions, reason through code problems, and learn directly from internal engineering documentation.
-• **Tech Stack**: React, Next.js, Python, Django & REST APIs.`;
+    // 1. Specific Project: SankalpTaru HUGE Mobile App
+    if (
+      q.includes("huge") ||
+      q.includes("sankalptaru") ||
+      q.includes("sankalptau") ||
+      ((q.includes("mobile") || q.includes("app")) && (q.includes("notification") || q.includes("permission") || q.includes("tree")))
+    ) {
+      if (
+        q.includes("link") ||
+        q.includes("url") ||
+        q.includes("download") ||
+        q.includes("store") ||
+        q.includes("play") ||
+        q.includes("ios") ||
+        q.includes("android")
+      ) {
+        return `📱 **SankalpTaru HUGE Mobile App Links:**
+• **Google Play Store**: [Download on Google Play](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
+• **Apple App Store**: [Download on Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)
+
+In this production mobile app, Sheeladitya resolved critical push-notification delivery issues and fixed mobile permission pop-ups (camera, storage, geolocation) for environmental plantation drives.`;
       }
 
-      if (q.includes("sankalptaru") || q.includes("huge") || q.includes("notification") || q.includes("tree")) {
-        return `For the **SankalpTaru Huge App**, Sheeladitya resolved critical push-notification delivery failures and fixed mobile permission pop-up issues, ensuring users receive real-time updates on tree plantation drives with proper runtime permissions.`;
-      }
+      return `For the **SankalpTaru Huge Mobile App**, Sheeladitya resolved critical push-notification delivery failures and fixed mobile permission pop-up issues, ensuring users receive real-time updates on tree plantation drives with proper runtime permissions.
 
-      if (q.includes("g1") || q.includes("ground team") || q.includes("upload") || q.includes("login")) {
-        return `In the **G1 Ground Team App**, Sheeladitya introduced client/server image-upload validation checks to prevent corrupted uploads from crashing the app, and resolved a critical authentication login issue for field operators.`;
-      }
+📱 **Live App Downloads:**
+• [Google Play Store](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
+• [Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)`;
+    }
 
-      if (q.includes("website") || q.includes("wordpress") || q.includes("plugin")) {
-        return `For the **SankalpTaru Website**, Sheeladitya maintained and updated WordPress plugins, resolved plugin conflict regressions, and fixed responsive UI layout bugs.`;
-      }
+    // 2. Specific Project: Talent Evaluator & AI Mentor
+    if (
+      q.includes("talent") ||
+      q.includes("evaluator") ||
+      q.includes("mentor") ||
+      q.includes("onboard")
+    ) {
+      return `**Talent Evaluator — Onboarding Platform & AI Mentor** is Sheeladitya's highlight project:
+• **Structured Onboarding**: Interactive modules, candidate self-assessments, and distinct candidate vs. admin workflows.
+• **AI Mentor Concept**: Trainees can ask questions, reason through code blockers, and learn directly from internal engineering documentation.
+• **Tech Stack**: React, Next.js, Python, Django & REST APIs.
+• **GitHub Repo**: [SheeladityaVinayKumar/talent-evaluator](https://github.com/SheeladityaVinayKumar/talent-evaluator)`;
+    }
 
+    // 3. Specific Project: G1 Ground Team App
+    if (
+      q.includes("g1") ||
+      q.includes("ground team") ||
+      (q.includes("upload") && q.includes("validation"))
+    ) {
+      return `In the **G1 Ground Team App**, Sheeladitya introduced client/server image-upload validation checks to prevent corrupted uploads from crashing the app in low-bandwidth field conditions, and resolved a critical authentication login issue for field operators.
+*(Note: This is an internal field operations application within ColoredCow/enterprise repository).*`;
+    }
+
+    // 4. Specific Project: SankalpTaru Production Website
+    if (
+      (q.includes("website") || q.includes("wordpress") || q.includes("plugin")) &&
+      !q.includes("portfolio")
+    ) {
+      return `For the **SankalpTaru Production Website**, Sheeladitya maintained and updated WordPress plugins, resolved plugin conflict regressions, and fixed responsive UI layout bugs.
+• **Live Platform**: [sankalptaru.org](https://sankalptaru.org)`;
+    }
+
+    // 5. Direct Links / URLs Directory
+    if (
+      q.includes("links") ||
+      (q.includes("link") &&
+        (q.includes("all") ||
+          q.includes("get") ||
+          q.includes("app") ||
+          q.includes("where") ||
+          q.includes("download")))
+    ) {
+      return `🔗 **Quick Project & Profile Links:**
+• 📄 **Resume / CV**: [Open Google Drive Resume](${this.data.profile.resumeUrl})
+• 📱 **SankalpTaru HUGE (Android)**: [Google Play Store](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
+• 🍏 **SankalpTaru HUGE (iOS)**: [Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)
+• 💻 **Talent Evaluator Repo**: [GitHub Repository](https://github.com/SheeladityaVinayKumar/talent-evaluator)
+• 🌐 **SankalpTaru Website**: [sankalptaru.org](https://sankalptaru.org)
+• 🐙 **Sheeladitya's GitHub Profile**: [github.com/SheeladityaVinayKumar](${this.data.profile.githubUrl})`;
+    }
+
+    // 6. All Projects Overview
+    if (
+      q.includes("project") ||
+      q.includes("built") ||
+      q.includes("apps") ||
+      q.includes("work") ||
+      q.includes("portfolio")
+    ) {
       return `Here are Sheeladitya's core projects directly from his resume:
 
-1. 🌟 **Talent Evaluator — Onboarding Platform & AI Mentor**: Structured onboarding with self-assessments and an AI Mentor concept for trainees.
-2. 📱 **SankalpTaru Huge Mobile App**: Resolved push-notification issues and device runtime permission bugs.
-3. 🛡️ **G1 Ground Team App**: Engineered image-upload validation checks and fixed critical login issues.
-4. 🌐 **SankalpTaru Website**: Managed plugin updates and resolved responsive UI issues.
+1. 🌟 **Talent Evaluator — Onboarding Platform & AI Mentor**: Structured onboarding with self-assessments and an AI Mentor concept for trainees. ([GitHub Repository](https://github.com/SheeladityaVinayKumar/talent-evaluator))
+2. 📱 **SankalpTaru Huge Mobile App**: Resolved push-notification issues and device runtime permission bugs. ([Google Play](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru) · [App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187))
+3. 🛡️ **G1 Ground Team App**: Engineered image-upload validation checks and fixed critical login issues. *(Internal production codebase)*
+4. 🌐 **SankalpTaru Website**: Managed plugin updates and resolved responsive UI issues. ([Live Website](https://sankalptaru.org))
 
 *Click any project card to view its complete architecture deep-dive!*`;
     }
@@ -65,6 +134,14 @@ export class AIAgentEngine {
     // 4. Education
     if (q.includes("education") || q.includes("college") || q.includes("degree") || q.includes("btech") || q.includes("btkit") || q.includes("university")) {
       return `Sheeladitya is pursuing his **Bachelor of Technology (B.Tech) in Computer Science and Engineering** at **BTKIT** (2023–2027 Expected). He pairs academic foundations with practical software development experience.`;
+    }
+
+    // 4b. Resume / CV
+    if (q.includes("resume") || q.includes("cv")) {
+      return `📄 You can view and download Sheeladitya's official resume here:
+[Open Sheeladitya's Resume (Google Drive)](${this.data.profile.resumeUrl})
+
+You can also click the **Resume / CV** button in the header navigation or the hero section anytime!`;
     }
 
     // 5. Hiring & Availability

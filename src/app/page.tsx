@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AIAgentModal } from "@/components/AIAgentModal";
-import { Toast } from "@/components/Toast";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { playBlipSound } from "@/lib/aiAgentEngine";
 
@@ -18,7 +17,7 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { profile, experience, education, skillCategories, projects } = PORTFOLIO_DATA;
+  const { profile, experience, education, skillCategories, projects, metrics } = PORTFOLIO_DATA;
 
   // Show top 2 projects on home page, with link to full projects page
   const featuredProjects = projects.slice(0, 2);
@@ -96,6 +95,21 @@ export default function Home() {
                 <span>View Projects</span>
                 <span style={{ fontSize: "1.1rem" }}>&rarr;</span>
               </Link>
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                title="View & Download Resume PDF"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="12" y1="18" x2="12" y2="12" />
+                  <polyline points="9 15 12 18 15 15" />
+                </svg>
+                <span>Resume / CV</span>
+              </a>
               <button
                 onClick={() => handleOpenAI()}
                 className="btn-secondary"
@@ -118,6 +132,24 @@ export default function Home() {
                 <span>Copy Email</span>
               </button>
             </div>
+          </div>
+        </section>
+
+        {/* ==========================================================================
+            IMPACT METRICS BAR (Verified Trainee & Engineering Metrics)
+            ========================================================================== */}
+        <section className="metrics-strip-section" aria-label="Key Impact Metrics">
+          <div className="metrics-grid">
+            {metrics.map((m, idx) => (
+              <div key={idx} className={`metric-card accent-${m.accent}`}>
+                <div className="metric-header">
+                  <span className="metric-value">{m.value}</span>
+                  <span className={`metric-badge ${m.accent}`}>Highlight</span>
+                </div>
+                <div className="metric-label">{m.label}</div>
+                <div className="metric-detail">{m.detail}</div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -162,6 +194,88 @@ export default function Home() {
                         {t}
                       </span>
                     ))}
+                  </div>
+
+                  {/* Project Links / Repo Status Row */}
+                  <div className="project-links-row">
+                    {p.demoUrl && (
+                      <a
+                        href={p.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-project-link primary"
+                        title="Open Live Demonstration"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                    {p.appUrl && (
+                      <a
+                        href={p.appUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-project-link primary"
+                        title="View on Google Play Store"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                          <line x1="12" y1="18" x2="12.01" y2="18" />
+                        </svg>
+                        <span>Play Store</span>
+                      </a>
+                    )}
+                    {p.appStoreUrl && (
+                      <a
+                        href={p.appStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-project-link"
+                        title="View on Apple App Store"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.63 1.35-.57.65-1.06 1.72-.93 2.74 1.01.08 2.02-.49 2.64-1.24z" />
+                        </svg>
+                        <span>App Store</span>
+                      </a>
+                    )}
+                    {p.githubUrl && (
+                      <a
+                        href={p.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-project-link"
+                        title="View GitHub Repository"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span>GitHub</span>
+                      </a>
+                    )}
+                    {p.repoType === "internal" && (
+                      <span className="badge-repo-status internal" title={p.accessNote || "Internal Production Work"}>
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                        <span>Internal Production</span>
+                      </span>
+                    )}
+                    {p.repoType === "client" && (
+                      <span className="badge-repo-status client" title={p.accessNote || "Live Production Website"}>
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="2" y1="12" x2="22" y2="12" />
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                        <span>Live Production</span>
+                      </span>
+                    )}
                   </div>
 
                   <div className="project-card-foot">
@@ -408,31 +522,33 @@ export default function Home() {
       <Footer />
 
       {/* Floating Side-Panel AI Launcher (Bottom Right) */}
-      <div
-        className="floating-launcher-btn"
-        onClick={() => handleOpenAI()}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") handleOpenAI();
-        }}
-        aria-label="Open AI Assistant"
-      >
-        <Image
-          src="/assets/images/sheeladitya.png"
-          alt="Stranger AI"
-          width={30}
-          height={30}
-          style={{ borderRadius: "50%", objectFit: "cover" }}
-        />
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-primary)" }}>Chat with Stranger</span>
-          <span style={{ fontSize: "0.72rem", color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: 4 }}>
-            <span className="pulse-dot" style={{ width: 4, height: 4 }}></span>
-            <span>Online</span>
-          </span>
+      {!isAIAgentOpen && (
+        <div
+          className="floating-launcher-btn"
+          onClick={() => handleOpenAI()}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleOpenAI();
+          }}
+          aria-label="Open AI Assistant"
+        >
+          <Image
+            src="/assets/images/sheeladitya.png"
+            alt="Stranger AI"
+            width={30}
+            height={30}
+            style={{ borderRadius: "50%", objectFit: "cover" }}
+          />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-primary)" }}>Chat with Stranger</span>
+            <span style={{ fontSize: "0.72rem", color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: 4 }}>
+              <span className="pulse-dot" style={{ width: 4, height: 4 }}></span>
+              <span>Online</span>
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Gemini-Style Side Panel */}
       <AIAgentModal

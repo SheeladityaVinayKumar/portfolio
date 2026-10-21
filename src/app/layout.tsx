@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Life_Savers, Meow_Script, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+const meowScript = Meow_Script({
+  variable: "--font-meow",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400",
+  display: "swap"
+});
+
+const lifeSavers = Life_Savers({
+  variable: "--font-life-savers",
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
   display: "swap"
 });
 
@@ -57,7 +64,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${meowScript.variable} ${lifeSavers.variable} ${jetbrainsMono.variable} antialiased`}
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>{children}</body>
