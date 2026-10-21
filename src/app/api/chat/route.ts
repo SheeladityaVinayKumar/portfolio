@@ -85,9 +85,10 @@ export async function POST(req: Request) {
 
     const trimmedMsg = message.trim();
     const grokApiKey = (process.env.GROK_API_KEY || process.env.XAI_API_KEY || "").trim();
+    const grokBaseUrl = (process.env.GROK_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
     const grokModel = process.env.GROK_MODEL || "grok-2-latest";
 
-    // If Grok API key is configured, call xAI Grok API
+    // If Grok API key is configured, call Grok API
     if (grokApiKey && grokApiKey !== "your_grok_api_key_here") {
       try {
         const systemPrompt = buildSystemPrompt();
@@ -99,7 +100,7 @@ export async function POST(req: Request) {
             content: item.text
           }));
 
-        const response = await fetch("https://api.x.ai/v1/chat/completions", {
+        const response = await fetch(`${grokBaseUrl}/chat/completions`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
