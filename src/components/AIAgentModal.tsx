@@ -27,7 +27,8 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
   const [inputVal, setInputVal] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [aiMode, setAiMode] = useState<"agent" | "grok">("agent");
+  const [modelLabel, setModelLabel] = useState<string>("AI Agent");
+  const [isLiveAI, setIsLiveAI] = useState<boolean>(false);
 
   const engineRef = useRef<AIAgentEngine | null>(null);
   const chatScrollRef = useRef<HTMLDivElement>(null);
@@ -92,7 +93,16 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
       if (res.ok) {
         const data = await res.json();
         if (data.isRealAI) {
-          setAiMode("grok");
+          setIsLiveAI(true);
+          if (data.model?.toLowerCase().includes("llama")) {
+            setModelLabel("Groq Cloud");
+          } else if (data.model?.toLowerCase().includes("grok")) {
+            setModelLabel("Grok 2.0");
+          } else if (data.model?.toLowerCase().includes("gemini")) {
+            setModelLabel("Gemini");
+          } else {
+            setModelLabel("Live AI");
+          }
         }
         streamReply(data.reply || "I'm here to help!");
         return;
@@ -180,12 +190,12 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ fontWeight: 700, fontSize: "0.95rem" }}>Stranger</span>
                 <span className="badge-pill indigo" style={{ padding: "2px 8px", fontSize: "0.68rem" }}>
-                  {aiMode === "grok" ? "Grok 2.0" : "AI Agent"}
+                  {modelLabel}
                 </span>
               </div>
               <div style={{ fontSize: "0.74rem", color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: 5 }}>
                 <span className="pulse-dot" style={{ width: 5, height: 5 }}></span>
-                <span>{aiMode === "grok" ? "Live Grok AI" : "Online"}</span>
+                <span>{isLiveAI ? "Live AI Connected" : "Online"}</span>
               </div>
             </div>
           </div>

@@ -84,7 +84,7 @@ export async function POST(req: Request) {
     }
 
     const trimmedMsg = message.trim();
-    const grokApiKey = (process.env.GROK_API_KEY || process.env.XAI_API_KEY || "").trim();
+    const grokApiKey = (process.env.GROQ_API_KEY || process.env.GROK_API_KEY || process.env.XAI_API_KEY || "").trim();
     const grokBaseUrl = (process.env.GROK_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
     const grokModel = process.env.GROK_MODEL || "grok-2-latest";
 
