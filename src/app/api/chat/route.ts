@@ -84,7 +84,9 @@ export async function POST(req: Request) {
     }
 
     const trimmedMsg = message.trim();
-    const grokApiKey = (process.env.GROQ_API_KEY || process.env.GROK_API_KEY || process.env.XAI_API_KEY || "").trim();
+    const grokApiKey = (process.env.GROQ_API_KEY || process.env.GROK_API_KEY || process.env.XAI_API_KEY || "")
+      .trim()
+      .replace(/^["']|["']$/g, "");
     const grokBaseUrl = (process.env.GROK_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
     const grokModel = process.env.GROK_MODEL || "grok-2-latest";
 
@@ -107,7 +109,7 @@ export async function POST(req: Request) {
         if (!process.env.GROK_BASE_URL) {
           if (grokApiKey.startsWith("gsk_")) {
             endpoint = "https://api.groq.com/openai/v1/chat/completions";
-            modelToUse = process.env.GROK_MODEL || "llama-3.3-70b-versatile";
+            modelToUse = process.env.GROQ_MODEL || (grokModel !== "grok-2-latest" ? grokModel : "openai/gpt-oss-120b");
           } else if (grokApiKey.startsWith("sk-or-")) {
             endpoint = "https://openrouter.ai/api/v1/chat/completions";
             modelToUse = process.env.GROK_MODEL || "x-ai/grok-2-1212";

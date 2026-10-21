@@ -94,7 +94,7 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
         const data = await res.json();
         if (data.isRealAI) {
           setIsLiveAI(true);
-          if (data.model?.toLowerCase().includes("llama")) {
+          if (data.model?.toLowerCase().includes("llama") || data.model?.toLowerCase().includes("gpt-oss") || data.model?.toLowerCase().includes("qwen")) {
             setModelLabel("Groq Cloud");
           } else if (data.model?.toLowerCase().includes("grok")) {
             setModelLabel("Grok 2.0");
