@@ -21,12 +21,13 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
     {
       id: "welcome",
       sender: "assistant",
-      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me about his software engineering experience at **ColoredCow**, projects like the **Talent Evaluator AI Mentor**, his React/Next.js/Python stack, or how to get in touch!"
+      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me anything about his software engineering experience at **ColoredCow**, projects like the **Talent Evaluator AI Mentor**, his React/Next.js/Python stack, or how to get in touch!"
     }
   ]);
   const [inputVal, setInputVal] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [aiMode, setAiMode] = useState<"agent" | "grok">("agent");
 
   const engineRef = useRef<AIAgentEngine | null>(null);
   const chatScrollRef = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
     }
   }, [messages, isTyping]);
 
-  const sendMessage = (textToSend?: string) => {
+  const sendMessage = async (textToSend?: string) => {
     const text = (textToSend || inputVal).trim();
     if (!text || isTyping) return;
 
@@ -73,14 +74,37 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
       text
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setInputVal("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      const reply = engineRef.current?.respond(text) || "I'm here to help!";
-      streamReply(reply);
-    }, 350);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: text,
+          history: updatedMessages
+        })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.isRealAI) {
+          setAiMode("grok");
+        }
+        streamReply(data.reply || "I'm here to help!");
+        return;
+      }
+      throw new Error(`Server returned ${res.status}`);
+    } catch {
+      // Graceful local engine fallback
+      setTimeout(() => {
+        const reply = engineRef.current?.respond(text) || "I'm here to help!";
+        streamReply(reply);
+      }, 300);
+    }
   };
 
   const streamReply = (fullReply: string) => {
@@ -156,12 +180,12 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ fontWeight: 700, fontSize: "0.95rem" }}>Stranger</span>
                 <span className="badge-pill indigo" style={{ padding: "2px 8px", fontSize: "0.68rem" }}>
-                  AI Twin
+                  {aiMode === "grok" ? "Grok 2.0" : "AI Agent"}
                 </span>
               </div>
               <div style={{ fontSize: "0.74rem", color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: 5 }}>
                 <span className="pulse-dot" style={{ width: 5, height: 5 }}></span>
-                <span>Active</span>
+                <span>{aiMode === "grok" ? "Live Grok AI" : "Online"}</span>
               </div>
             </div>
           </div>
