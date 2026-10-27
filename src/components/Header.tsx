@@ -16,10 +16,6 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
     <header className="site-header">
       <div className="container">
         <nav className="nav-inner" aria-label="Main Navigation">
-          <Link href="/" className="brand-badge">
-            <span>{PORTFOLIO_DATA.profile.shortName}</span>
-          </Link>
-
           <ul className="nav-links">
             <li>
               <Link
@@ -27,14 +23,6 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
                 className={`nav-link ${pathname === "/" ? "active" : ""}`}
               >
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/projects"
-                className={`nav-link ${pathname === "/projects" ? "active" : ""}`}
-              >
-                Projects
               </Link>
             </li>
           </ul>
