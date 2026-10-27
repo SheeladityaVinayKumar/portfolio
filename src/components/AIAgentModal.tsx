@@ -7,6 +7,7 @@ import { AIAgentEngine, playBlipSound } from "@/lib/aiAgentEngine";
 interface AIAgentModalProps {
   isOpen: boolean;
   initialPrompt?: string;
+  onPromptHandled?: () => void;
   onClose: () => void;
 }
 
@@ -16,12 +17,183 @@ interface MessageItem {
   text: string;
 }
 
-export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalProps) {
+function parseTableRow(line: string): string[] {
+  let raw = line.trim();
+  if (raw.startsWith("|")) raw = raw.slice(1);
+  if (raw.endsWith("|")) raw = raw.slice(0, -1);
+  return raw.split("|").map((cell) => cell.trim());
+}
+
+function isDelimiterRow(line: string): boolean {
+  const raw = line.trim();
+  if (!raw.includes("-")) return false;
+  const cells = parseTableRow(raw);
+  if (cells.length === 0) return false;
+  return cells.every((cell) => /^:?-+:?$/.test(cell.replace(/\s+/g, "")));
+}
+
+function getAlignments(delimLine: string): Array<"left" | "center" | "right"> {
+  const cells = parseTableRow(delimLine);
+  return cells.map((cell) => {
+    const trimmed = cell.replace(/\s+/g, "");
+    const leftColon = trimmed.startsWith(":");
+    const rightColon = trimmed.endsWith(":");
+    if (leftColon && rightColon) return "center";
+    if (rightColon) return "right";
+    return "left";
+  });
+}
+
+function formatInline(str: string): string {
+  if (!str) return "";
+  let out = str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Inline code `code`
+  out = out.replace(/`([^`]+)`/g, '<code class="chat-inline-code">$1</code>');
+
+  // Bold **text**
+  out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+
+  // Italic *text*
+  out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  // Links [text](url)
+  out = out.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer" class="chat-link">$1</a>'
+  );
+
+  return out;
+}
+
+export function formatMarkdown(text: string): string {
+  if (!text) return "";
+
+  // 1. Protect code blocks
+  const codeBlocks: string[] = [];
+  let processed = text.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, (_, lang, code) => {
+    const escaped = code
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
+    codeBlocks.push(`<pre class="chat-code-block"><code>${escaped.trim()}</code></pre>`);
+    return placeholder;
+  });
+
+  // 2. Parse lines
+  const lines = processed.split("\n");
+  const output: string[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const nextLine = lines[i + 1];
+
+    // Check for markdown table
+    if (line.includes("|") && nextLine && isDelimiterRow(nextLine)) {
+      const headerLine = line;
+      const delimLine = nextLine;
+      const headers = parseTableRow(headerLine);
+      const alignments = getAlignments(delimLine);
+      const rows: string[][] = [];
+      i += 2; // skip header & delimiter
+
+      while (i < lines.length && lines[i].trim().length > 0 && lines[i].includes("|") && !isDelimiterRow(lines[i])) {
+        rows.push(parseTableRow(lines[i]));
+        i++;
+      }
+
+      let tableHtml = '<div class="chat-table-wrapper"><table class="chat-table"><thead><tr>';
+      headers.forEach((h, idx) => {
+        const align = alignments[idx] || "left";
+        tableHtml += `<th style="text-align:${align};">${formatInline(h)}</th>`;
+      });
+      tableHtml += '</tr></thead><tbody>';
+
+      rows.forEach((row) => {
+        tableHtml += '<tr>';
+        headers.forEach((_, idx) => {
+          const cell = row[idx] ?? "";
+          const align = alignments[idx] || "left";
+          tableHtml += `<td style="text-align:${align};">${formatInline(cell)}</td>`;
+        });
+        tableHtml += '</tr>';
+      });
+
+      tableHtml += '</tbody></table></div>';
+      output.push(tableHtml);
+      continue;
+    }
+
+    // Headings
+    if (/^###\s+(.+)$/.test(line)) {
+      const content = line.replace(/^###\s+/, "");
+      output.push(`<div class="chat-heading-3">${formatInline(content)}</div>`);
+      i++;
+      continue;
+    }
+    if (/^##\s+(.+)$/.test(line)) {
+      const content = line.replace(/^##\s+/, "");
+      output.push(`<div class="chat-heading-2">${formatInline(content)}</div>`);
+      i++;
+      continue;
+    }
+    if (/^#\s+(.+)$/.test(line)) {
+      const content = line.replace(/^#\s+/, "");
+      output.push(`<div class="chat-heading-1">${formatInline(content)}</div>`);
+      i++;
+      continue;
+    }
+
+    // Lists (- item, * item, • item, 1. item)
+    if (/^(\s*[-*•]|\d+\.)\s+(.+)$/.test(line)) {
+      const content = line.replace(/^(\s*[-*•]|\d+\.)\s+/, "");
+      output.push(
+        `<div class="chat-list-item"><span class="chat-bullet">•</span><span>${formatInline(content)}</span></div>`
+      );
+      i++;
+      continue;
+    }
+
+    // Blockquote
+    if (/^>\s*(.+)$/.test(line)) {
+      const content = line.replace(/^>\s*/, "");
+      output.push(`<blockquote class="chat-blockquote">${formatInline(content)}</blockquote>`);
+      i++;
+      continue;
+    }
+
+    // Empty line
+    if (line.trim() === "") {
+      output.push('<div class="chat-spacer"></div>');
+      i++;
+      continue;
+    }
+
+    // Regular line
+    output.push(`<p class="chat-text-line">${formatInline(line)}</p>`);
+    i++;
+  }
+
+  let finalHtml = output.join("");
+
+  codeBlocks.forEach((block, idx) => {
+    finalHtml = finalHtml.replace(`__CODE_BLOCK_${idx}__`, block);
+  });
+
+  return finalHtml;
+}
+
+export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }: AIAgentModalProps) {
   const [messages, setMessages] = useState<MessageItem[]>([
     {
       id: "welcome",
       sender: "assistant",
-      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me anything about his software engineering experience at **ColoredCow**, projects like the **Talent Evaluator AI Mentor**, his React/Next.js/Python stack, or how to get in touch!"
+      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me anything about his software engineering experience at **ColoredCow**, production projects like **SankalpTaru Foundation** and the **G1 Ground Team app**, his React/Next.js/Python stack, or how to get in touch!"
     }
   ]);
   const [inputVal, setInputVal] = useState("");
@@ -33,6 +205,30 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
   const engineRef = useRef<AIAgentEngine | null>(null);
   const chatScrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const handledPromptRef = useRef<string | null>(null);
+  const streamingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const messagesRef = useRef(messages);
+  messagesRef.current = messages;
+
+  const isTypingRef = useRef(isTyping);
+  isTypingRef.current = isTyping;
+
+  const soundEnabledRef = useRef(soundEnabled);
+  soundEnabledRef.current = soundEnabled;
+
+  const inputValRef = useRef(inputVal);
+  inputValRef.current = inputVal;
+
+  // Clean up any pending streaming timer on unmount
+  useEffect(() => {
+    return () => {
+      if (streamingIntervalRef.current) {
+        clearInterval(streamingIntervalRef.current);
+        streamingIntervalRef.current = null;
+      }
+    };
+  }, []);
 
   const getEngine = React.useCallback(() => {
     if (!engineRef.current) {
@@ -46,37 +242,59 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
       const assistantMsgId = `asst-${Date.now()}`;
       setIsTyping(false);
 
+      if (streamingIntervalRef.current) {
+        clearInterval(streamingIntervalRef.current);
+        streamingIntervalRef.current = null;
+      }
+
       setMessages((prev) => [
         ...prev,
         { id: assistantMsgId, sender: "assistant", text: "" }
       ]);
 
+      // Calculate smooth dynamic chunk size so long replies finish in ~1-1.5s
+      const chunkSize = Math.max(6, Math.ceil(fullReply.length / 70));
       let charIdx = 0;
-      const interval = setInterval(() => {
-        charIdx += 3;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === assistantMsgId
-              ? { ...msg, text: fullReply.substring(0, charIdx) }
-              : msg
-          )
-        );
 
+      streamingIntervalRef.current = setInterval(() => {
+        charIdx += chunkSize;
         if (charIdx >= fullReply.length) {
-          clearInterval(interval);
-          if (soundEnabled) playBlipSound(880, 0.06);
+          if (streamingIntervalRef.current) {
+            clearInterval(streamingIntervalRef.current);
+            streamingIntervalRef.current = null;
+          }
+          // Ensure 100% of the text is rendered with zero truncation
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === assistantMsgId ? { ...msg, text: fullReply } : msg
+            )
+          );
+          if (soundEnabledRef.current) playBlipSound(880, 0.06);
+        } else {
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === assistantMsgId
+                ? { ...msg, text: fullReply.substring(0, charIdx) }
+                : msg
+            )
+          );
         }
-      }, 12);
+      }, 14);
     },
-    [soundEnabled]
+    []
   );
 
   const sendMessage = React.useCallback(
     async (textToSend?: string) => {
-      const text = (textToSend || inputVal).trim();
-      if (!text || isTyping) return;
+      const text = (textToSend !== undefined ? textToSend : inputValRef.current).trim();
+      if (!text || isTypingRef.current) return;
 
-      if (soundEnabled) playBlipSound(550, 0.05);
+      if (streamingIntervalRef.current) {
+        clearInterval(streamingIntervalRef.current);
+        streamingIntervalRef.current = null;
+      }
+
+      if (soundEnabledRef.current) playBlipSound(550, 0.05);
 
       const userMsg: MessageItem = {
         id: `user-${Date.now()}`,
@@ -84,7 +302,7 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
         text
       };
 
-      const updatedMessages = [...messages, userMsg];
+      const updatedMessages = [...messagesRef.current, userMsg];
       setMessages(updatedMessages);
       setInputVal("");
       setIsTyping(true);
@@ -129,21 +347,34 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
         }, 300);
       }
     },
-    [inputVal, isTyping, soundEnabled, messages, streamReply, getEngine]
+    [getEngine, streamReply]
   );
 
   useEffect(() => {
     if (isOpen && initialPrompt) {
+      if (handledPromptRef.current === initialPrompt) return;
+      handledPromptRef.current = initialPrompt;
+      const promptToSend = initialPrompt;
       const timer = setTimeout(() => {
-        sendMessage(initialPrompt);
-      }, 60);
+        sendMessage(promptToSend);
+        onPromptHandled?.();
+      }, 80);
       return () => clearTimeout(timer);
     }
+  }, [isOpen, initialPrompt, onPromptHandled, sendMessage]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      handledPromptRef.current = null;
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     if (isOpen && inputRef.current) {
       const focusTimer = setTimeout(() => inputRef.current?.focus(), 250);
       return () => clearTimeout(focusTimer);
     }
-  }, [isOpen, initialPrompt, sendMessage]);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -260,16 +491,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
       });
       setShowScrollBottom(false);
     }
-  };
-
-  const formatText = (text: string) => {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.*?)\*/g, "<em>$1</em>")
-      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:var(--accent-primary);text-decoration:underline;">$1</a>')
-      .replace(/\n• /g, "<br>• ")
-      .replace(/\n\n/g, "<br><br>")
-      .replace(/\n/g, "<br>");
   };
 
   const handleClear = () => {
@@ -410,7 +631,7 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
             <div
               key={m.id}
               className={`chat-bubble ${m.sender}`}
-              dangerouslySetInnerHTML={{ __html: formatText(m.text) }}
+              dangerouslySetInnerHTML={{ __html: formatMarkdown(m.text) }}
             />
           ))}
 
@@ -438,6 +659,14 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
         <div className="sidepanel-chips-tray" aria-label="Suggested topics">
           <button
             className="sidepanel-chip"
+            onClick={() => sendMessage("Why should our company hire Sheeladitya as a Software Engineer?")}
+            type="button"
+            style={{ borderColor: "rgba(79, 70, 229, 0.4)", background: "var(--accent-primary-light)", color: "var(--accent-primary)" }}
+          >
+            🎯 Why Hire Sheeladitya?
+          </button>
+          <button
+            className="sidepanel-chip"
             onClick={() => sendMessage("Tell me about your experience at ColoredCow")}
             type="button"
           >
@@ -452,17 +681,24 @@ export function AIAgentModal({ isOpen, initialPrompt, onClose }: AIAgentModalPro
           </button>
           <button
             className="sidepanel-chip"
-            onClick={() => sendMessage("What did you build for the Talent Evaluator & AI Mentor project?")}
+            onClick={() => sendMessage("What did you fix in the G1 Ground Team app?")}
             type="button"
           >
-            🚀 Talent Evaluator AI
+            🛡️ G1 Ground Team App
           </button>
           <button
             className="sidepanel-chip"
-            onClick={() => sendMessage("What did you fix in the SankalpTaru Huge mobile app?")}
+            onClick={() => sendMessage("Can you show me a comparison table of your projects?")}
             type="button"
           >
-            📱 SankalpTaru App
+            📊 Projects Table
+          </button>
+          <button
+            className="sidepanel-chip"
+            onClick={() => sendMessage("Tell me about SankalpTaru Foundation NGO, its e-commerce website, and mobile app")}
+            type="button"
+          >
+            🌱 SankalpTaru NGO Ecosystem
           </button>
           <button
             className="sidepanel-chip"

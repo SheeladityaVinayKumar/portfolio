@@ -19,8 +19,8 @@ export default function Home() {
 
   const { profile, experience, education, skillCategories, projects, metrics } = PORTFOLIO_DATA;
 
-  // Show top 2 projects on home page, with link to full projects page
-  const featuredProjects = projects.slice(0, 2);
+  // Show production projects on home page, with link to full projects page
+  const featuredProjects = projects;
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -41,16 +41,54 @@ export default function Home() {
     setIsAIAgentOpen(true);
   };
 
-  const handleSubmitContact = (e: React.FormEvent) => {
+  const handleSubmitContact = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      showToast("Please fill out all fields before sending.");
+      return;
+    }
+
     setIsSubmitting(true);
     playBlipSound(700, 0.08);
 
-    setTimeout(() => {
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
+      "8e82e255-a874-46dc-a52e-ba768bc523c7";
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+          from_name: `${formData.name.trim()} (Portfolio Inquiry)`,
+          subject: `Portfolio Message from ${formData.name.trim()}`
+        })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        playBlipSound(900, 0.12);
+        showToast("✓ Thank you! Your message has been sent to Sheeladitya's inbox.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(data.message || "Failed to deliver message.");
+      }
+    } catch {
+      // Graceful fallback: Open Gmail compose with pre-filled message
+      showToast("Opening Gmail draft to complete message...");
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${encodeURIComponent(`Portfolio Message from ${formData.name}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+      window.open(gmailUrl, "_blank");
+    } finally {
       setIsSubmitting(false);
-      showToast("✓ Thank you! Your message has been sent.");
-      setFormData({ name: "", email: "", message: "" });
-    }, 800);
+    }
   };
 
   return (
@@ -136,6 +174,60 @@ export default function Home() {
         </section>
 
         {/* ==========================================================================
+            RECRUITER 1-MINUTE FAST-TRACK (EXECUTIVE SUMMARY)
+            ========================================================================== */}
+        <section className="recruiter-fast-track" aria-label="Recruiter Summary">
+          <div className="recruiter-header">
+            <div className="recruiter-badge">
+              <span className="pulse-dot"></span>
+              <span>⚡ Recruiter Fast-Track &middot; 30-Second Summary</span>
+            </div>
+            <button
+              onClick={() => handleOpenAI("Why should our company hire Sheeladitya as a Software Engineer?")}
+              className="recruiter-ai-ask-btn"
+              type="button"
+            >
+              <span>🎯 Ask Stranger: &ldquo;Why Hire Sheeladitya?&rdquo;</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+
+          <div className="recruiter-grid">
+            <div className="recruiter-card">
+              <div className="recruiter-card-icon">🎯</div>
+              <div className="recruiter-card-title">Target Roles</div>
+              <div className="recruiter-card-desc">
+                Software Engineer &middot; Full-Stack Developer &middot; Frontend Engineer &middot; SDE Trainee
+              </div>
+            </div>
+
+            <div className="recruiter-card">
+              <div className="recruiter-card-icon">⚡</div>
+              <div className="recruiter-card-title">Production Proof</div>
+              <div className="recruiter-card-desc">
+                1+ Year at <strong>ColoredCow</strong> &middot; Shipped fixes on apps in Google Play &amp; Apple App Store
+              </div>
+            </div>
+
+            <div className="recruiter-card">
+              <div className="recruiter-card-icon">🛠️</div>
+              <div className="recruiter-card-title">Core Technical Stack</div>
+              <div className="recruiter-card-desc">
+                React, Next.js, ES6+, Python, Django, REST APIs, Git &amp; PR Reviews
+              </div>
+            </div>
+
+            <div className="recruiter-card">
+              <div className="recruiter-card-icon">📍</div>
+              <div className="recruiter-card-title">Availability &amp; Work Model</div>
+              <div className="recruiter-card-desc">
+                Immediate availability &middot; Open for Full-Time, Remote, Hybrid, or Relocation
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==========================================================================
             IMPACT METRICS BAR (Verified Trainee & Engineering Metrics)
             ========================================================================== */}
         <section className="metrics-strip-section" aria-label="Key Impact Metrics">
@@ -163,29 +255,36 @@ export default function Home() {
               <h2 className="section-heading">Featured Projects</h2>
             </div>
             <Link href="/projects" style={{ fontWeight: 600, color: "var(--accent-primary)", display: "flex", alignItems: "center", gap: 6 }}>
-              <span>View all 4 projects</span>
+              <span>View all {projects.length} projects</span>
               <span>&rarr;</span>
             </Link>
           </div>
 
           <div className="projects-preview-grid">
-            {featuredProjects.map((p, index) => (
+            {featuredProjects.map((p) => (
               <div key={p.id} className="project-card">
-                <div className="project-img-box">
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    className="project-img"
-                    sizes="(max-width: 860px) 100vw, 50vw"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </div>
                 <div className="project-card-body">
-                  <span className="badge-pill indigo" style={{ alignSelf: "flex-start", marginBottom: 8 }}>
-                    {p.badge}
-                  </span>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
+                    <span className="badge-pill indigo">
+                      {p.badge}
+                    </span>
+                    <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontWeight: 600 }}>
+                      {p.categoryLabel}
+                    </span>
+                  </div>
+
                   <h3 className="project-card-title">{p.title}</h3>
+                  <div style={{ fontSize: "0.86rem", color: "var(--accent-primary)", fontWeight: 600, marginBottom: 8 }}>
+                    {p.subtitle}
+                  </div>
+
+                  {p.impactMetric && (
+                    <div className="project-impact-strip">
+                      <span className="impact-pill">🚀 Key Impact</span>
+                      <span className="impact-text">{p.impactMetric}</span>
+                    </div>
+                  )}
+
                   <p className="project-card-desc">{p.summary}</p>
 
                   <div className="project-card-tech">
@@ -305,7 +404,7 @@ export default function Home() {
             <h2 className="section-heading">Experience &amp; Education</h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 24 }}>
+          <div className="experience-education-grid">
             {/* Experience Card */}
             <div className="clean-card">
               <h3 style={{ fontSize: "1.2rem", marginBottom: 16 }}>Professional Experience</h3>
@@ -328,7 +427,7 @@ export default function Home() {
             </div>
 
             {/* Education Card */}
-            <div className="clean-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="clean-card education-card">
               <div>
                 <h3 style={{ fontSize: "1.2rem", marginBottom: 16 }}>Education</h3>
                 <div style={{ marginBottom: 16 }}>
@@ -397,22 +496,73 @@ export default function Home() {
                 </p>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <a
-                    href={`mailto:${profile.email}`}
+                  {/* Email Action Card */}
+                  <div
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "10px 14px",
+                      padding: "14px 16px",
                       background: "var(--bg-subtle)",
-                      borderRadius: 8,
-                      fontSize: "0.88rem",
-                      fontWeight: 600
+                      borderRadius: 10,
+                      border: "1px solid var(--border-subtle)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 10
                     }}
                   >
-                    <span>{profile.email}</span>
-                    <span>&rarr;</span>
-                  </a>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--accent-primary)" }}>
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                          <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <span style={{ fontSize: "0.92rem", fontWeight: 600, color: "var(--text-primary)" }}>
+                          {profile.email}
+                        </span>
+                      </div>
+                      <span className="badge-pill emerald" style={{ fontSize: "0.7rem", padding: "2px 8px" }}>
+                        Active Inbox
+                      </span>
+                    </div>
+
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginTop: 2 }}>
+                      <button
+                        onClick={handleCopyEmail}
+                        className="btn-copy"
+                        type="button"
+                        style={{ fontSize: "0.8rem", padding: "6px 12px" }}
+                        title="Copy email address to clipboard"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                        <span>Copy Email</span>
+                      </button>
+
+                      <a
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${encodeURIComponent("Hello Sheeladitya - Software Engineering Opportunity")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary"
+                        style={{ fontSize: "0.8rem", padding: "6px 12px" }}
+                        title="Open Gmail composer directly in browser"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        <span>Open in Gmail</span>
+                      </a>
+
+                      <a
+                        href={`mailto:${profile.email}`}
+                        style={{ fontSize: "0.76rem", color: "var(--text-muted)", marginLeft: "auto", textDecoration: "underline" }}
+                        title="Open default desktop mail application (Outlook / Apple Mail)"
+                      >
+                        Mail App
+                      </a>
+                    </div>
+                  </div>
 
                   <a
                     href={profile.githubUrl}
@@ -554,6 +704,7 @@ export default function Home() {
       <AIAgentModal
         isOpen={isAIAgentOpen}
         initialPrompt={aiAgentPrompt}
+        onPromptHandled={() => setAiAgentPrompt(undefined)}
         onClose={() => {
           setIsAIAgentOpen(false);
           setAiAgentPrompt(undefined);

@@ -12,6 +12,7 @@ export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [isAIAgentOpen, setIsAIAgentOpen] = useState(false);
   const [aiAgentPrompt, setAiAgentPrompt] = useState<string | undefined>(undefined);
+  const [expandedSnippets, setExpandedSnippets] = useState<Record<string, boolean>>({});
 
   const { projects } = PORTFOLIO_DATA;
 
@@ -19,6 +20,13 @@ export default function ProjectsPage() {
     if (activeFilter === "all") return true;
     return p.category === activeFilter;
   });
+
+  const toggleSnippet = (projectId: string) => {
+    setExpandedSnippets((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }));
+  };
 
   const handleOpenAI = (prompt?: string) => {
     setAiAgentPrompt(prompt);
@@ -38,10 +46,10 @@ export default function ProjectsPage() {
             <span style={{ color: "var(--text-primary)", fontWeight: 600, fontSize: "0.88rem" }}>Projects</span>
           </div>
 
-          <h1 style={{ fontSize: "2.4rem", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 10 }}>
+          <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 2.85rem)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 10 }}>
             Projects &amp; Case Studies
           </h1>
-          <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", maxWidth: 700, lineHeight: 1.6 }}>
+          <p style={{ fontSize: "clamp(0.98rem, 1.2vw, 1.1rem)", color: "var(--text-secondary)", maxWidth: 950, lineHeight: 1.65 }}>
             In-depth engineering breakdown of software applications, mobile platforms, and AI systems built and maintained according to my resume.
           </p>
         </div>
@@ -56,60 +64,56 @@ export default function ProjectsPage() {
             All Projects ({projects.length})
           </button>
           <button
-            className={`filter-pill ${activeFilter === "ai" ? "active" : ""}`}
-            onClick={() => setActiveFilter("ai")}
-            type="button"
-          >
-            AI &amp; Mentorship
-          </button>
-          <button
             className={`filter-pill ${activeFilter === "mobile" ? "active" : ""}`}
             onClick={() => setActiveFilter("mobile")}
             type="button"
           >
-            Mobile &amp; Push Apps
+            Mobile &amp; Push Apps ({projects.filter((p) => p.category === "mobile").length})
           </button>
           <button
             className={`filter-pill ${activeFilter === "web" ? "active" : ""}`}
             onClick={() => setActiveFilter("web")}
             type="button"
           >
-            Web &amp; CMS
+            Web &amp; E-Commerce ({projects.filter((p) => p.category === "web").length})
           </button>
         </div>
 
         {/* Projects List (Detailed View) */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          {filteredProjects.map((p, index) => (
+          {filteredProjects.map((p) => (
             <article
               key={p.id}
               id={p.id}
               className="clean-card"
-              style={{ padding: 0, overflow: "hidden" }}
+              style={{ padding: "clamp(24px, 3.2vw, 40px)" }}
             >
-              <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr" }}>
-                {/* Image */}
-                <div style={{ position: "relative", minHeight: 320, background: "#f8fafc" }}>
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    sizes="(max-width: 860px) 100vw, 50vw"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </div>
-
-                {/* Content */}
-                <div style={{ padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-                      <span className="badge-pill indigo">{p.badge}</span>
-                      <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>{p.categoryLabel}</span>
+              <div>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span className="badge-pill indigo">{p.badge}</span>
+                        <span style={{ fontSize: "0.82rem", color: "var(--text-muted)", fontWeight: 600 }}>{p.categoryLabel}</span>
+                      </div>
+                      {p.metrics && (
+                        <span style={{ fontSize: "0.82rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                          {p.metrics}
+                        </span>
+                      )}
                     </div>
 
-                    <h2 style={{ fontSize: "1.45rem", fontWeight: 700, marginBottom: 8 }}>{p.title}</h2>
-                    <p style={{ fontSize: "0.92rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: 18 }}>
+                    <h2 style={{ fontSize: "clamp(1.35rem, 2vw, 1.65rem)", fontWeight: 700, marginBottom: 6 }}>{p.title}</h2>
+                    <div style={{ fontSize: "0.9rem", color: "var(--accent-primary)", fontWeight: 600, marginBottom: 10 }}>
+                      {p.subtitle}
+                    </div>
+
+                    {p.impactMetric && (
+                      <div className="project-impact-strip">
+                        <span className="impact-pill">🚀 Key Impact</span>
+                        <span className="impact-text">{p.impactMetric}</span>
+                      </div>
+                    )}
+
+                    <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: 1.65, marginBottom: 18 }}>
                       {p.overview}
                     </p>
 
@@ -201,7 +205,7 @@ export default function ProjectsPage() {
                       )}
                     </div>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14, marginBottom: 20 }}>
                       <div style={{ background: "#fef2f2", border: "1px solid #fee2e2", borderRadius: 8, padding: 12 }}>
                         <strong style={{ color: "#991b1b", fontSize: "0.82rem", display: "block", marginBottom: 3 }}>
                           Problem Addressed:
@@ -234,9 +238,43 @@ export default function ProjectsPage() {
                         ))}
                       </ul>
                     </div>
-                  </div>
 
-                  <div style={{ paddingTop: 20, marginTop: 24, borderTop: "1px solid var(--border-light)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    {p.codeSnippet && (
+                      <div style={{ marginTop: 18 }}>
+                        <button
+                          onClick={() => toggleSnippet(p.id)}
+                          className="code-toggle-btn"
+                          type="button"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                          </svg>
+                          <span>
+                            {expandedSnippets[p.id]
+                              ? "Hide Code Architecture"
+                              : `View Code Architecture: ${p.codeSnippet.title}`}
+                          </span>
+                          <span style={{ fontSize: "0.72rem", marginLeft: 4 }}>
+                            {expandedSnippets[p.id] ? "▲" : "▼"}
+                          </span>
+                        </button>
+
+                        {expandedSnippets[p.id] && (
+                          <div className="project-code-wrapper">
+                            <div className="project-code-header">
+                              <span>{p.codeSnippet.title}</span>
+                              <span className="code-lang-tag">{p.codeSnippet.language}</span>
+                            </div>
+                            <pre className="project-code-pre">
+                              <code>{p.codeSnippet.code}</code>
+                            </pre>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    <div style={{ paddingTop: 20, marginTop: 24, borderTop: "1px solid var(--border-light)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <button
                       onClick={() => handleOpenAI(`Explain the technical architecture and challenges in: ${p.title}`)}
                       className="btn-secondary"
@@ -247,16 +285,23 @@ export default function ProjectsPage() {
                       <span>&rarr;</span>
                     </button>
                     <a
-                      href={`mailto:${PORTFOLIO_DATA.profile.email}?subject=Inquiry regarding ${encodeURIComponent(p.title)}`}
-                      style={{ fontSize: "0.84rem", color: "var(--text-muted)", fontWeight: 500 }}
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PORTFOLIO_DATA.profile.email}&su=${encodeURIComponent(`Inquiry regarding ${p.title}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary"
+                      style={{ fontSize: "0.82rem", padding: "6px 12px", textDecoration: "none" }}
+                      title="Compose email inquiry in Gmail directly in browser"
                     >
-                      Inquire via Email
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                      <span>Inquire via Email</span>
                     </a>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
         </div>
       </main>
 
@@ -295,6 +340,7 @@ export default function ProjectsPage() {
       <AIAgentModal
         isOpen={isAIAgentOpen}
         initialPrompt={aiAgentPrompt}
+        onPromptHandled={() => setAiAgentPrompt(undefined)}
         onClose={() => {
           setIsAIAgentOpen(false);
           setAiAgentPrompt(undefined);

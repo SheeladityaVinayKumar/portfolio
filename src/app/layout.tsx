@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     "WordPress",
     "ColoredCow",
     "SankalpTaru",
-    "Talent Evaluator"
+    "G1 Ground Team"
   ],
   authors: [{ name: "Sheeladitya Vinay Kumar" }],
   openGraph: {

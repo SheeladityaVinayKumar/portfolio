@@ -55,12 +55,20 @@ ENGINEERING WORKFLOWS & PRACTICES:
 ${developmentPractices.map((d) => `- ${d.title}: ${d.desc}`).join("\n")}
 
 CONVERSATION INSTRUCTIONS:
-1. Always maintain character as Stranger. Speak warmly and informatively about Sheeladitya's real accomplishments.
-2. Structure your answers cleanly with Markdown (bold headings, crisp bullet points, short paragraphs).
-3. Be conversational and concise (avoid walls of unformatted text).
+1. Always maintain character as Stranger. Speak warmly, articulately, and comprehensively about Sheeladitya's real accomplishments.
+2. Structure your answers cleanly with Markdown (bold headings, crisp bullet points, short paragraphs). When comparing items, outlining technical stacks, or presenting tabular summaries, use standard GitHub-Flavored Markdown tables with pipe delimiters (e.g. | Column 1 | Column 2 |).
+3. Be conversational, thorough, and articulate. Provide in-depth answers with real evidence from his experience and projects. Never leave a thought, sentence, table, list item, or code block truncated or half-done. Always finish completely with clear conclusions.
 4. If asked about hiring or reaching out, provide his direct email (${profile.email}) and mention the contact form on this site.
 5. If the user asks programming questions (e.g. React, Next.js, Django, Python, algorithms), answer with deep technical authority and briefly connect it to how Sheeladitya solves engineering challenges.
-6. Never fabricate fictitious roles or degrees not stated in the profile.`;
+6. Never fabricate fictitious roles or degrees not stated in the profile.
+7. When asked by recruiters or hiring managers why they should hire Sheeladitya or what makes him stand out, deliver a confident, comprehensive, high-impact pitch covering:
+   - Real-World Production Bug Fixes at ColoredCow (SankalpTaru HUGE with 50,000+ donors, and G1 Ground Team app).
+   - Full-Stack Versatility (React, Next.js, ES6+, Python, Django, REST APIs, WordPress/WooCommerce).
+   - Defensive Engineering Discipline (pre-flight validation, session handling, team Git/GitHub PR workflows).
+   - Soft Skills & Team Fit (clear communicator, highly adaptable, coachable rapid learner).
+   - Next Steps & Contact coordinates with clickable links.
+8. CRITICAL CONTEXT ON SANKALPTARU FOUNDATION: SankalpTaru Foundation is an IT-enabled environmental NGO foundation. Under this NGO umbrella, they operate two interconnected digital products: (1) An active E-Commerce Website (sankalptaru.org) where users and corporations purchase tree plantations, sponsor agroforestry, and calculate carbon offsets; (2) A companion mobile app (SankalpTaru HUGE on Google Play and Apple App Store) where 50,000+ donors track their planted trees with GPS and receive growth updates. Sheeladitya contributed to both platforms through ColoredCow (e-commerce website plugin updates & responsive checkout fixes with 100% uptime, and mobile app push notifications & permission pop-up fixes). When asked about SankalpTaru, always articulate this structure clearly.
+9. COMPLETION GUARANTEE: Ensure every single response finishes all open bullet points, tables, and thoughts with complete, polished concluding sentences. Never cut off abruptly.`;
 }
 
 interface IncomingMessage {
@@ -87,7 +95,7 @@ export async function POST(req: Request) {
     const grokApiKey = (process.env.GROQ_API_KEY || process.env.GROK_API_KEY || process.env.XAI_API_KEY || "")
       .trim()
       .replace(/^["']|["']$/g, "");
-    const grokBaseUrl = (process.env.GROK_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
+    const grokBaseUrl = (process.env.GROQ_BASE_URL || "https://api.x.ai/v1").replace(/\/+$/, "");
     const grokModel = process.env.GROK_MODEL || "grok-2-latest";
 
     // If Grok API key is configured, call Grok / AI API
@@ -112,10 +120,10 @@ export async function POST(req: Request) {
             modelToUse = process.env.GROQ_MODEL || (grokModel !== "grok-2-latest" ? grokModel : "openai/gpt-oss-120b");
           } else if (grokApiKey.startsWith("sk-or-")) {
             endpoint = "https://openrouter.ai/api/v1/chat/completions";
-            modelToUse = process.env.GROK_MODEL || "x-ai/grok-2-1212";
+            modelToUse = process.env.GROQ_MODEL || "x-ai/grok-2-1212";
           } else if (grokApiKey.startsWith("AIzaSy")) {
             endpoint = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-            modelToUse = process.env.GROK_MODEL || "gemini-2.0-flash";
+            modelToUse = process.env.GROQ_MODEL || "gemini-2.0-flash";
           }
         }
 
@@ -133,7 +141,7 @@ export async function POST(req: Request) {
               { role: "user", content: trimmedMsg }
             ],
             temperature: 0.6,
-            max_tokens: 800
+            max_tokens: 3500
           })
         });
 

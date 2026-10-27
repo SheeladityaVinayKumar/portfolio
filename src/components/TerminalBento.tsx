@@ -53,25 +53,23 @@ export function TerminalBento({ onOpenAIAgent }: TerminalBentoProps) {
 `;
     } else if (cmd === "projects") {
       out = `
-<span class="term-line system">── Resume Featured Projects ──</span>
-  1. <strong class="term-line accent">Talent Evaluator — Onboarding Platform & AI Mentor</strong>
-     Structured candidate onboarding with learning modules, self-assessments, and an AI mentor concept.
-  2. <strong class="term-line accent">SankalpTaru Huge Mobile App</strong>
-     Fixed push-notification delivery and runtime permission pop-ups for field/user workflows.
+<span class="term-line system">── Production Projects ──</span>
+  1. <strong class="term-line accent">SankalpTaru Foundation — E-Commerce Website & Platform</strong>
+     WordPress/WooCommerce plugin audits and mobile responsive checkout patches on live sankalptaru.org.
+  2. <strong class="term-line accent">SankalpTaru HUGE — NGO Companion Mobile App</strong>
+     Companion app to sankalptaru.org; resolved push notifications & runtime permissions for 50,000+ donors.
   3. <strong class="term-line accent">G1 Ground Team App</strong>
-     Introduced image-upload validation checks and fixed critical login authentication bugs.
-  4. <strong class="term-line accent">SankalpTaru Production Website</strong>
-     WordPress plugin upgrades, layout troubleshooting, and responsive fixes.
+     Introduced pre-flight image-upload validation checks and fixed critical login authentication bugs.
 `;
     } else if (cmd === "experience") {
       out = `
 <span class="term-line system">── Professional Trainee Experience ──</span>
   <strong class="term-line success">ColoredCow</strong> | Software Development Trainee
   <span class="term-line">Period: Nov 2025 – Oct 2026</span>
-  • Resolved push notification & permission issues in SankalpTaru Huge app.
-  • Added image upload validation checks & resolved login issue in G1 Ground Team app.
-  • Maintained plugins on SankalpTaru website with responsive UI fixes.
-  • Followed team-based Git/GitHub PR workflows incorporating reviewer feedback.
+  • SankalpTaru Foundation (NGO): Audited plugins & patched responsive checkout UI on live sankalptaru.org.
+  • SankalpTaru Foundation (NGO): Resolved push notification drops & permission pop-ups in HUGE mobile app.
+  • Added pre-flight image upload validation & resolved auth login failure in G1 Ground Team app.
+  • Followed team-based Git/GitHub PR workflows incorporating senior reviewer feedback.
 `;
     } else if (cmd === "education") {
       out = `

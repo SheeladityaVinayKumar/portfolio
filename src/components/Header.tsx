@@ -17,7 +17,6 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
       <div className="container">
         <nav className="nav-inner" aria-label="Main Navigation">
           <Link href="/" className="brand-badge">
-            <div className="brand-monogram">S.</div>
             <span>{PORTFOLIO_DATA.profile.shortName}</span>
           </Link>
 
@@ -54,7 +53,7 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
                 <line x1="12" y1="18" x2="12" y2="12" />
                 <polyline points="9 15 12 18 15 15" />
               </svg>
-              <span>Resume</span>
+              <span className="nav-btn-text">Resume</span>
             </a>
             <button
               onClick={onOpenAIAgent}
@@ -63,7 +62,7 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
               type="button"
             >
               <span className="pulse-dot"></span>
-              <span>Stranger AI</span>
+              <span className="nav-btn-text">Stranger AI</span>
             </button>
             <a href="#contact" className="nav-contact-btn">
               Contact
