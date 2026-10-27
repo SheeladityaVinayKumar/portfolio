@@ -13,7 +13,7 @@ export function SkillsBento() {
           <div className="section-label">Technical Arsenal</div>
           <h2 className="section-title">Skills &amp; Technologies</h2>
           <p className="section-desc">
-            Practical expertise across frontend architectures, backend APIs, content platforms, and engineering workflows.
+            Practical expertise across web application architectures, backend APIs, content platforms, and engineering workflows.
           </p>
         </div>
 

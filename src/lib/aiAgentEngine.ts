@@ -90,7 +90,7 @@ The central digital platform for **SankalpTaru Foundation (Environmental NGO)**:
 
 **SankalpTaru Foundation** is India's leading IT-enabled environmental NGO foundation. Its digital ecosystem is built around an active **e-commerce website** and a **companion mobile application**.
 
-During his software development traineeship at **ColoredCow**, Sheeladitya engineered improvements across both platforms:
+During his time as an **SDE Intern** at **ColoredCow**, Sheeladitya engineered improvements across both platforms:
 
 1. 🌐 **E-Commerce Website ([sankalptaru.org](https://sankalptaru.org))**:
    • The NGO's live online storefront where users and corporations purchase tree plantations, sponsor agroforestry drives, and calculate carbon footprints.
@@ -161,8 +161,8 @@ During his software development traineeship at **ColoredCow**, Sheeladitya engin
     }
 
     // 6. Experience at ColoredCow
-    if (q.includes("experience") || q.includes("coloredcow") || q.includes("job") || q.includes("intern") || q.includes("trainee")) {
-      return `Sheeladitya worked as a **Software Development Trainee at ColoredCow** (Nov 2025 – Oct 2026), supporting engineering for **SankalpTaru Foundation (NGO)** and internal field operations:
+    if (q.includes("experience") || q.includes("coloredcow") || q.includes("job") || q.includes("intern") || q.includes("trainee") || q.includes("sde")) {
+      return `Sheeladitya works as a **Software Development Engineer (SDE) Intern at ColoredCow** (Nov 2025 – Present), supporting engineering for **SankalpTaru Foundation (NGO)** and internal field operations:
 • **SankalpTaru E-Commerce Web ([sankalptaru.org](https://sankalptaru.org))**: Audited plugins and resolved responsive layout regressions across donation & checkout funnels with 100% uptime.
 • **SankalpTaru HUGE Companion Mobile App**: Resolved push notifications & permission pop-up issues for 50,000+ donors on Google Play & App Store.
 • **G1 Ground Team App**: Added multi-tier pre-flight image-upload validation checks and fixed authentication login bugs in field operations.
@@ -170,11 +170,11 @@ During his software development traineeship at **ColoredCow**, Sheeladitya engin
     }
 
     // 7. Technical Skills
-    if (q.includes("skill") || q.includes("stack") || q.includes("react") || q.includes("python") || q.includes("django") || q.includes("language") || q.includes("frontend") || q.includes("backend")) {
+    if (q.includes("skill") || q.includes("stack") || q.includes("react") || q.includes("python") || q.includes("django") || q.includes("language") || q.includes("web") || q.includes("backend")) {
       return `Here is Sheeladitya's verified technical skillset:
-• **Frontend**: React, Next.js, Modern JavaScript (ES6+), HTML5, CSS3, Responsive Design.
+• **Web & UI Systems**: React, Next.js, Modern JavaScript (ES6+), HTML5, CSS3, Responsive Design.
 • **Backend**: Python, Django, PHP, RESTful APIs, Session & Authentication logic.
-• **CMS & Web**: WordPress, Plugin maintenance & updates, UI troubleshooting.
+• **CMS & Web Platforms**: WordPress, Plugin maintenance & updates, UI troubleshooting.
 • **Tools & Practices**: Git, GitHub Pull Requests, Code Reviews, Input/Upload Validation, Debugging & Bug Resolution.`;
     }
 
@@ -205,7 +205,7 @@ You can also click the **Resume / CV** button in the header navigation or the he
    Unlike candidates with only academic toys, Sheeladitya resolved critical push-notification delivery drops and device permission blockers on live apps with **50,000+ users** (*SankalpTaru Huge* on Google Play & App Store) at ColoredCow.
 
 2. **Full-Stack Engineering Breadth**:
-   Hands-on fluency across modern frontend (**React, Next.js, ES6+, Responsive Design**) and server-side ecosystems (**Python, Django, PHP, RESTful APIs**).
+   Hands-on fluency across modern web systems (**React, Next.js, ES6+, Responsive Design**) and server-side ecosystems (**Python, Django, PHP, RESTful APIs**).
 
 3. **Defensive Engineering & Collaboration**:
    Accustomed to professional team Git/GitHub PR workflows, code reviews, pre-flight file validation to eliminate field crashes, and robust authentication.
@@ -219,7 +219,7 @@ You can also click the **Resume / CV** button in the header navigation or the he
 
     // 10. General Hiring & Availability
     if (q.includes("hire") || q.includes("available") || q.includes("opportunity") || q.includes("remote") || q.includes("contact") || q.includes("email") || q.includes("full time")) {
-      return `Yes! Sheeladitya is open to **Software Engineer, Full-Stack, and Trainee opportunities** (Remote, Hybrid, or On-site).
+      return `Yes! Sheeladitya is open to **Software Engineer, Full-Stack Developer, and SDE opportunities** (Remote, Hybrid, or On-site).
 
 📫 **Direct Contact Coordinates:**
 • **Email**: ${this.data.profile.email} · [Compose in Gmail](https://mail.google.com/mail/?view=cm&fs=1&to=${this.data.profile.email})
@@ -251,7 +251,7 @@ During his time at **ColoredCow**, he worked on real-world production projects i
 Feel free to ask me about:
 • His **Projects** (SankalpTaru E-Commerce, HUGE app, G1 Ground Team)
 • His **Work Experience** at ColoredCow
-• His **Tech Stack** (Frontend & Backend)
+• His **Tech Stack** (Web, UI & Backend)
 • Or how to **Get in Touch / Hire** him!`;
   }
 }

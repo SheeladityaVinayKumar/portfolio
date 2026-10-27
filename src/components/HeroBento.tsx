@@ -60,7 +60,7 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
                     <span style={{ color: "var(--accent-cyan)" }}>React &middot; Next.js &middot; Python &middot; Django</span>
                   </div>
                   <p className="hero-summary-text">
-                    Software development trainee with practical experience resolving application bugs, engineering push-notification flows, image-upload validation, and optimizing user-facing workflows across mobile apps and web platforms. Passionate about building <strong>reliable, maintainable software that solves real user problems</strong>.
+                    Software Development Engineer (SDE) Intern at ColoredCow with practical experience resolving application bugs, engineering push-notification flows, image-upload validation, and optimizing user-facing workflows across mobile apps and web platforms. Passionate about building <strong>reliable, maintainable software that solves real user problems</strong>.
                   </p>
                 </div>
               </div>

@@ -50,13 +50,13 @@ export const PORTFOLIO_DATA = {
     linkedinUrl: "https://linkedin.com",
     educationBrief: "B.Tech CSE · BTKIT (2023–2027)",
     summary:
-      "Software development trainee with practical experience resolving application bugs and improving user-facing workflows across mobile apps and websites. Worked on push notifications, permission prompts, login functionality, image-upload validation, website plugin updates, and UI fixes. Familiar with collaborative Git/GitHub workflows and focused on building reliable, maintainable software that solves real user problems."
+      "Software Development Engineer (SDE) Intern at ColoredCow with practical experience resolving application bugs and improving user-facing workflows across mobile apps and websites. Worked on push notifications, permission prompts, login functionality, image-upload validation, website plugin updates, and UI fixes. Familiar with collaborative Git/GitHub workflows and focused on building reliable, maintainable software that solves real user problems."
   },
 
   metrics: [
     {
       value: "1+ Year",
-      label: "Practical Trainee Experience",
+      label: "Software Engineering Experience",
       detail: "Hands-on software development at ColoredCow",
       accent: "indigo" as const
     },
@@ -76,7 +76,7 @@ export const PORTFOLIO_DATA = {
 
   skillCategories: [
     {
-      title: "Frontend Engineering",
+      title: "Web & UI Systems",
       icon: "✨",
       subtitle: "Component architecture & responsive interfaces",
       skills: [
@@ -136,7 +136,7 @@ export const PORTFOLIO_DATA = {
       subtitle: "SankalpTaru Foundation (NGO) · Live E-Commerce Storefront (sankalptaru.org)",
       category: "web",
       categoryLabel: "NGO E-Commerce Website",
-      badge: "ColoredCow Trainee Work",
+      badge: "ColoredCow Engineering",
       badgeAccent: "amber",
       image: "/assets/images/project-fullstack-cloud.jpg",
       impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
@@ -168,7 +168,7 @@ add_action('wp_enqueue_scripts', function() {
       highlights: [
         "Maintained continuous uptime during live production plugin updates and e-commerce transactions.",
         "Troubleshot and fixed multi-device CSS breakpoint glitches across key landing & checkout pages.",
-        "Enhanced form submission responsiveness and front-end asset loading times.",
+        "Enhanced form submission responsiveness and web asset loading times.",
         "Collaborated via GitHub PR workflows incorporating senior engineering reviews."
       ],
       demoUrl: "https://sankalptaru.org",
@@ -181,7 +181,7 @@ add_action('wp_enqueue_scripts', function() {
       subtitle: "SankalpTaru Foundation (NGO) · Mobile Tree Tracking & Push Notifications",
       category: "mobile",
       categoryLabel: "NGO Companion App",
-      badge: "ColoredCow Trainee Work",
+      badge: "ColoredCow Engineering",
       badgeAccent: "emerald",
       image: "/assets/images/project-sankalptaru.jpg",
       impactMetric: "Restored push notifications & device permissions across 50,000+ mobile app donors",
@@ -227,7 +227,7 @@ export async function registerPushNotificationChannel() {
       subtitle: "Client/Server Image-Upload Validation & Login Authentication Fix",
       category: "mobile",
       categoryLabel: "Field Operations & Mobile",
-      badge: "ColoredCow Trainee Work",
+      badge: "ColoredCow Engineering",
       badgeAccent: "cyan",
       image: "/assets/images/project-cluster-mesh.jpg",
       impactMetric: "Eliminated mobile field upload crashes and fixed mission-critical operator login bug",
@@ -270,10 +270,10 @@ export function validateFieldImage(file: File): ValidationResult {
 
   experience: [
     {
-      role: "Software Development Trainee",
+      role: "Software Development Engineer (SDE) Intern",
       company: "ColoredCow",
-      period: "November 2025 – October 2026",
-      type: "Traineeship",
+      period: "November 2025 – Present",
+      type: "Internship",
       points: [
         "Maintained client digital platforms for SankalpTaru Foundation (an IT-enabled environmental NGO foundation operating an e-commerce website and companion mobile app):",
         "• E-Commerce Website (sankalptaru.org): Audited mission-critical WordPress plugins, eliminated stylesheet conflicts, and patched mobile responsive layout bugs across donation & checkout funnels with 100% production uptime.",

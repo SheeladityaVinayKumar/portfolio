@@ -17,7 +17,7 @@ export function ExperienceBento({ onShowToast }: ExperienceBentoProps) {
           <div className="section-label">Career Journey</div>
           <h2 className="section-title">Experience &amp; Education</h2>
           <p className="section-desc">
-            Industry trainee experience resolving real-world production challenges alongside academic foundations.
+            Software engineering experience resolving real-world production challenges alongside academic foundations.
           </p>
         </div>
 

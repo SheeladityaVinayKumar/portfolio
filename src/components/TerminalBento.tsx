@@ -46,7 +46,7 @@ export function TerminalBento({ onOpenAIAgent }: TerminalBentoProps) {
     } else if (cmd === "skills") {
       out = `
 <span class="term-line system">── Technical Skillset ──</span>
-  [Frontend]   : React, Next.js, Modern JavaScript (ES6+), HTML5, CSS3 / Modern UI
+  [Web & UI]   : React, Next.js, Modern JavaScript (ES6+), HTML5, CSS3 / Modern UI
   [Backend]    : Python, Django, PHP, RESTful APIs, Auth & Session Handling
   [CMS & Web]  : WordPress, Plugin Architecture, UI Troubleshooting
   [Workflow]   : Git, GitHub, Pull Requests, Code Review, Form & Upload Validation
@@ -63,8 +63,8 @@ export function TerminalBento({ onOpenAIAgent }: TerminalBentoProps) {
 `;
     } else if (cmd === "experience") {
       out = `
-<span class="term-line system">── Professional Trainee Experience ──</span>
-  <strong class="term-line success">ColoredCow</strong> | Software Development Trainee
+<span class="term-line system">── Professional Software Engineering Experience ──</span>
+  <strong class="term-line success">ColoredCow</strong> | Software Development Engineer (SDE) Intern
   <span class="term-line">Period: Nov 2025 – Oct 2026</span>
   • SankalpTaru Foundation (NGO): Audited plugins & patched responsive checkout UI on live sankalptaru.org.
   • SankalpTaru Foundation (NGO): Resolved push notification drops & permission pop-ups in HUGE mobile app.

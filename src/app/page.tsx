@@ -197,7 +197,7 @@ export default function Home() {
               <div className="recruiter-card-icon">🎯</div>
               <div className="recruiter-card-title">Target Roles</div>
               <div className="recruiter-card-desc">
-                Software Engineer &middot; Full-Stack Developer &middot; Frontend Engineer &middot; SDE Trainee
+                Software Engineer &middot; Full-Stack Developer &middot; Software Development Engineer (SDE)
               </div>
             </div>
 
@@ -205,7 +205,7 @@ export default function Home() {
               <div className="recruiter-card-icon">⚡</div>
               <div className="recruiter-card-title">Production Proof</div>
               <div className="recruiter-card-desc">
-                1+ Year at <strong>ColoredCow</strong> &middot; Shipped fixes on apps in Google Play &amp; Apple App Store
+                1+ Year as SDE Intern at <strong>ColoredCow</strong> &middot; Shipped fixes on apps in Google Play &amp; Apple App Store
               </div>
             </div>
 
@@ -228,7 +228,7 @@ export default function Home() {
         </section>
 
         {/* ==========================================================================
-            IMPACT METRICS BAR (Verified Trainee & Engineering Metrics)
+            IMPACT METRICS BAR (Verified SDE & Engineering Metrics)
             ========================================================================== */}
         <section className="metrics-strip-section" aria-label="Key Impact Metrics">
           <div className="metrics-grid">
