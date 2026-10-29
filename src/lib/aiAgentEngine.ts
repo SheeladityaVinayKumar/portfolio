@@ -255,31 +255,3 @@ Feel free to ask me about:
 • Or how to **Get in Touch / Hire** him!`;
   }
 }
-
-// Sound helper for Web Audio API
-export function playBlipSound(freq = 600, duration = 0.08) {
-  if (typeof window === "undefined") return;
-  try {
-    const AudioCtxClass =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof window.AudioContext })
-        .webkitAudioContext;
-    if (!AudioCtxClass) return;
-    const ctx = new AudioCtxClass();
-    if (ctx.state === "suspended") {
-      ctx.resume();
-    }
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + duration);
-  } catch {
-    // Ignore audio errors gracefully
-  }
-}

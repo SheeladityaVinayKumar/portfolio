@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { AIAgentEngine, playBlipSound } from "@/lib/aiAgentEngine";
+import { AIAgentEngine } from "@/lib/aiAgentEngine";
 
 interface AIAgentModalProps {
   isOpen: boolean;
@@ -198,7 +198,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
   ]);
   const [inputVal, setInputVal] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [modelLabel, setModelLabel] = useState<string>("AI Agent");
   const [isLiveAI, setIsLiveAI] = useState<boolean>(false);
 
@@ -213,9 +212,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
 
   const isTypingRef = useRef(isTyping);
   isTypingRef.current = isTyping;
-
-  const soundEnabledRef = useRef(soundEnabled);
-  soundEnabledRef.current = soundEnabled;
 
   const inputValRef = useRef(inputVal);
   inputValRef.current = inputVal;
@@ -269,7 +265,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
               msg.id === assistantMsgId ? { ...msg, text: fullReply } : msg
             )
           );
-          if (soundEnabledRef.current) playBlipSound(880, 0.06);
         } else {
           setMessages((prev) =>
             prev.map((msg) =>
@@ -293,8 +288,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
         clearInterval(streamingIntervalRef.current);
         streamingIntervalRef.current = null;
       }
-
-      if (soundEnabledRef.current) playBlipSound(550, 0.05);
 
       const userMsg: MessageItem = {
         id: `user-${Date.now()}`,
@@ -560,28 +553,6 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
           </div>
 
           <div className="sidepanel-controls">
-            {/* Sound Toggle */}
-            <button
-              onClick={() => setSoundEnabled(!soundEnabled)}
-              title={soundEnabled ? "Mute audio" : "Unmute audio"}
-              className="sidepanel-ctrl-btn"
-              type="button"
-              aria-label={soundEnabled ? "Mute audio" : "Unmute audio"}
-            >
-              {soundEnabled ? (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-                </svg>
-              ) : (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                  <line x1="23" y1="9" x2="17" y2="15" />
-                  <line x1="17" y1="9" x2="23" y2="15" />
-                </svg>
-              )}
-            </button>
-
             {/* Clear Conversation */}
             <button
               onClick={handleClear}

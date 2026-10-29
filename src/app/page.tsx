@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AIAgentModal } from "@/components/AIAgentModal";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { playBlipSound } from "@/lib/aiAgentEngine";
 
 export default function Home() {
   const [isAIAgentOpen, setIsAIAgentOpen] = useState(false);
@@ -29,7 +28,6 @@ export default function Home() {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profile.email).then(() => {
-      playBlipSound(900, 0.1);
       showToast(`✓ Copied email: ${profile.email}`);
     }).catch(() => {
       showToast(`Email: ${profile.email}`);
@@ -49,7 +47,6 @@ export default function Home() {
     }
 
     setIsSubmitting(true);
-    playBlipSound(700, 0.08);
 
     const accessKey =
       process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
@@ -75,7 +72,6 @@ export default function Home() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        playBlipSound(900, 0.12);
         showToast("✓ Thank you! Your message has been sent to Sheeladitya's inbox.");
         setFormData({ name: "", email: "", message: "" });
       } else {
