@@ -702,6 +702,7 @@ export default function Home() {
 
       {/* Gemini-Style Side Panel */}
       <AIAgentModal
+        key={isAIAgentOpen ? "open" : "closed"}
         isOpen={isAIAgentOpen}
         initialPrompt={aiAgentPrompt}
         onPromptHandled={() => setAiAgentPrompt(undefined)}

@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { playBlipSound } from "@/lib/aiAgentEngine";
 
 interface HeroBentoProps {
   onOpenAIAgent: (initialPrompt?: string) => void;
@@ -15,7 +14,6 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profile.email).then(() => {
-      playBlipSound(900, 0.1);
       onShowToast(`✓ Copied email to clipboard: ${profile.email}`);
     }).catch(() => {
       onShowToast(`Email: ${profile.email}`);

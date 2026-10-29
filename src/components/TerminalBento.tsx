@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { playBlipSound } from "@/lib/aiAgentEngine";
 
 interface TerminalBentoProps {
   onOpenAIAgent: () => void;
@@ -22,8 +21,6 @@ export function TerminalBento({ onOpenAIAgent }: TerminalBentoProps) {
   const executeCmd = (rawCmd: string) => {
     const cmd = rawCmd.trim().toLowerCase();
     if (!cmd) return;
-
-    playBlipSound(550, 0.05);
 
     if (cmd === "clear") {
       setHistory([]);

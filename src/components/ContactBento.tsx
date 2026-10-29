@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { playBlipSound } from "@/lib/aiAgentEngine";
 
 interface ContactBentoProps {
   onShowToast: (msg: string) => void;
@@ -40,7 +39,6 @@ export function ContactBento({ onShowToast }: ContactBentoProps) {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profile.email).then(() => {
-      playBlipSound(900, 0.1);
       onShowToast(`✓ Copied email to clipboard: ${profile.email}`);
     }).catch(() => {
       onShowToast(`Email: ${profile.email}`);
@@ -50,12 +48,10 @@ export function ContactBento({ onShowToast }: ContactBentoProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    playBlipSound(700, 0.08);
 
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      playBlipSound(950, 0.15);
       onShowToast("✓ Message dispatched! Sheeladitya will respond promptly.");
       setFormData({ name: "", email: "", message: "" });
 
