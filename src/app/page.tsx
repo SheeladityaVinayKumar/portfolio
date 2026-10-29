@@ -442,8 +442,15 @@ export default function Home() {
                 </p>
               </div>
 
-              <div style={{ paddingTop: 16, borderTop: "1px solid var(--border-light)", fontSize: "0.84rem", color: "var(--text-muted)" }}>
-                Core practices: Git/GitHub PRs, debugging, form &amp; upload validation.
+              <div style={{ paddingTop: 16, borderTop: "1px solid var(--border-light)" }}>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: 8, fontWeight: 600 }}>Core Practices</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {PORTFOLIO_DATA.developmentPractices.map((p, i) => (
+                    <span key={i} style={{ fontSize: "0.76rem", padding: "3px 9px", background: "var(--bg-subtle)", borderRadius: 99, color: "var(--text-secondary)", border: "1px solid var(--border-subtle)" }}>
+                      {p.title}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -692,10 +699,7 @@ export default function Home() {
           />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-primary)" }}>Chat with Stranger</span>
-            <span style={{ fontSize: "0.72rem", color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: 4 }}>
-              <span className="pulse-dot" style={{ width: 4, height: 4 }}></span>
-              <span>Online</span>
-            </span>
+            <span style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>Sheeladitya&apos;s AI</span>
           </div>
         </div>
       )}

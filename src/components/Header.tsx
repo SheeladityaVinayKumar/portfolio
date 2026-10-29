@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface HeaderProps {
   onOpenAIAgent: () => void;
@@ -28,6 +29,7 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
           </ul>
 
           <div className="nav-actions">
+            <ThemeToggle />
             <a
               href={PORTFOLIO_DATA.profile.resumeUrl}
               target="_blank"
@@ -46,7 +48,7 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
             <button
               onClick={onOpenAIAgent}
               className="nav-agent-btn"
-              title="Chat with Stranger AI"
+              title="Chat with Stranger — Sheeladitya's AI"
               type="button"
             >
               <span className="pulse-dot"></span>

@@ -47,7 +47,7 @@ export const PORTFOLIO_DATA = {
     avatar: "/assets/images/sheeladitya.png",
     resumeUrl: "https://drive.google.com/file/d/1jTR9iillcBNF2ypTknpiXkBp7BIO6kzo/view?usp=sharing",
     githubUrl: "https://github.com/SheeladityaVinayKumar",
-    linkedinUrl: "https://linkedin.com",
+    linkedinUrl: "https://linkedin.com/in/sheeladitya-vinay-kumar",
     educationBrief: "B.Tech CSE · BTKIT (2023–2027)",
     summary:
       "Software Development Engineer (SDE) Intern at ColoredCow with practical experience resolving application bugs and improving user-facing workflows across mobile apps and websites. Worked on push notifications, permission prompts, login functionality, image-upload validation, website plugin updates, and UI fixes. Familiar with collaborative Git/GitHub workflows and focused on building reliable, maintainable software that solves real user problems."
@@ -71,6 +71,12 @@ export const PORTFOLIO_DATA = {
       label: "Collaborative Engineering",
       detail: "Iterative reviews & team-based workflows",
       accent: "cyan" as const
+    },
+    {
+      value: "50,000+",
+      label: "Users Impacted",
+      detail: "Donors benefited from push notification & app fixes",
+      accent: "amber" as const
     }
   ],
 
