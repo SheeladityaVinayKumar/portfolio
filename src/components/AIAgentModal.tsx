@@ -74,7 +74,7 @@ export function formatMarkdown(text: string): string {
 
   // 1. Protect code blocks
   const codeBlocks: string[] = [];
-  let processed = text.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, (_, lang, code) => {
+  const processed = text.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, (_, lang, code) => {
     const escaped = code
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -208,13 +208,14 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
   const streamingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const messagesRef = useRef(messages);
-  messagesRef.current = messages;
-
   const isTypingRef = useRef(isTyping);
-  isTypingRef.current = isTyping;
-
   const inputValRef = useRef(inputVal);
-  inputValRef.current = inputVal;
+
+  useEffect(() => {
+    messagesRef.current = messages;
+    isTypingRef.current = isTyping;
+    inputValRef.current = inputVal;
+  }, [messages, isTyping, inputVal]);
 
   // Clean up any pending streaming timer on unmount
   useEffect(() => {
