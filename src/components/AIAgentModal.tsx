@@ -395,15 +395,13 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
   const startWidthRef = useRef(DEFAULT_WIDTH);
 
   const [isMinimized, setIsMinimized] = useState(false);
-  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
   const [showScrollBottom, setShowScrollBottom] = useState(false);
 
-  if (isOpen !== prevIsOpen) {
-    setPrevIsOpen(isOpen);
+  useEffect(() => {
     if (isOpen) {
       setIsMinimized(false);
     }
-  }
+  }, [isOpen]);
 
   const startResizing = (e: React.MouseEvent) => {
     e.preventDefault();
