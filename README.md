@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sheeladitya Vinay Kumar — Portfolio & AI Agent Platform
 
-## Getting Started
+Interactive developer portfolio website featuring Bento-grid layout, terminal simulator, project modals, and an integrated AI agent assistant (**"Stranger"**).
 
-First, run the development server:
+## Tech Stack
+- **Framework:** Next.js 16 (App Router)
+- **UI Library:** React 19, Tailwind CSS v4
+- **Language:** TypeScript
+- **Linter:** ESLint 9 (`eslint-config-next`)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- **Bento Grid Layout:** Modern modular design showcasing experience, skills, and projects.
+- **Terminal Simulator:** Interactive terminal experience with custom commands.
+- **Stranger AI Assistant:** Integrated AI chatbot with custom context and responses.
+- **Dark Mode Support:** Seamless theme switching.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development Commands
+- `npm run dev` - Start local development server (default: `http://localhost:3000`)
+- `npm run build` - Create production build
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint code checks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+- `src/app/` - Next.js App Router pages and API routes:
+  - `page.tsx` - Main portfolio page (bento grid layout)
+  - `layout.tsx` - Root layout with fonts, metadata, and theme
+  - `projects/page.tsx` - Detailed projects showcase
+  - `api/chat/route.ts` - AI assistant chat API endpoint
+  - `api/contact/route.ts` - Contact form submission endpoint
+- `src/components/` - Reusable UI components:
+  - `AIAgentModal.tsx` - Interactive AI assistant modal
+  - `HeroBento.tsx`, `ProjectsBento.tsx`, `SkillsBento.tsx`, `ExperienceBento.tsx`, `ContactBento.tsx`
+  - `Header.tsx`, `Footer.tsx`, `Toast.tsx`
+- `src/data/` - Static data (`portfolioData.ts`)
+- `src/lib/` - Shared utilities and AI engines (`aiAgentEngine.ts`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
