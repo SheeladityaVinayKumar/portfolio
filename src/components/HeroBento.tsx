@@ -40,8 +40,8 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
                   <Image
                     src="/assets/images/avatar.jpg"
                     alt={profile.name}
-                    width={108}
-                    height={108}
+                    width={130}
+                    height={130}
                     className="hero-avatar-img"
                     priority
                   />
