@@ -64,7 +64,7 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
               </div>
             </div>
 
-            <div className="hero-action-row">
+            <div className="hero-actions">
               <a href="#projects" className="btn-primary">
                 <span>View Projects</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
