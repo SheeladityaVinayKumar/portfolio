@@ -8,6 +8,12 @@ Interactive developer portfolio website featuring Bento-grid layout, terminal si
 - **Language:** TypeScript
 - **Linter:** ESLint 9 (`eslint-config-next`)
 
+## Features
+- **Bento Grid Layout:** Modern modular design showcasing experience, skills, and projects.
+- **Terminal Simulator:** Interactive terminal experience with custom commands.
+- **Stranger AI Assistant:** Integrated AI chatbot with custom context and responses.
+- **Dark Mode Support:** Seamless theme switching.
+
 ## Development Commands
 - `npm run dev` - Start local development server (default: `http://localhost:3000`)
 - `npm run build` - Create production build
