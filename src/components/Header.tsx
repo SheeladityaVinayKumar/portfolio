@@ -35,15 +35,6 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
               </svg>
               <span className="nav-btn-text">Resume</span>
             </a>
-            <button
-              onClick={onOpenAIAgent}
-              className="nav-agent-btn"
-              title="Chat with Stranger — Sheeladitya's AI"
-              type="button"
-            >
-              <span className="pulse-dot"></span>
-              <span className="nav-btn-text">Stranger AI</span>
-            </button>
             <a href="#contact" className="nav-contact-btn">
               Contact
             </a>
