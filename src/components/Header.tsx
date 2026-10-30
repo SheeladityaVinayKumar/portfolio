@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -11,23 +9,10 @@ interface HeaderProps {
 }
 
 export function Header({ onOpenAIAgent }: HeaderProps) {
-  const pathname = usePathname();
-
   return (
     <header className="site-header">
       <div className="container">
         <nav className="nav-inner" aria-label="Main Navigation">
-          <ul className="nav-links">
-            <li>
-              <Link
-                href="/"
-                className={`nav-link ${pathname === "/" ? "active" : ""}`}
-              >
-                Home
-              </Link>
-            </li>
-          </ul>
-
           <div className="nav-actions">
             <ThemeToggle />
             <a
