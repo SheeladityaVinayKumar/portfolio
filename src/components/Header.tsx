@@ -13,6 +13,11 @@ export function Header({ onOpenAIAgent }: HeaderProps) {
     <header className="site-header">
       <div className="container">
         <nav className="nav-inner" aria-label="Main Navigation">
+          <div className="nav-brand">
+            <span className="brand-dot"></span>
+            <span className="brand-title">Sheeladitya&apos;s Portfolio</span>
+          </div>
+
           <div className="nav-actions">
             <ThemeToggle />
             <a

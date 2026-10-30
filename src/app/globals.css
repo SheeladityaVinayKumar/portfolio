@@ -173,13 +173,26 @@ html[data-theme="dark"] .site-header {
   background: rgba(15, 15, 15, 0.9);
 }
 
-.nav-inner {
+.nav-brand {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 72px;
-  width: 100%;
-  gap: 12px;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.brand-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .brand-badge {
