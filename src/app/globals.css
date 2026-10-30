@@ -36,10 +36,10 @@
   --accent-amber: #D97706;
 
   /* Fonts */
-  --font-meow: var(--font-meow), 'Meow Script', cursive;
-  --font-life-savers: var(--font-life-savers), 'Life Savers', cursive, sans-serif;
-  --font-sans: var(--font-life-savers), 'Life Savers', system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
+  --font-meow: 'Meow Script', cursive;
+  --font-life-savers: 'Life Savers', cursive, sans-serif;
+  --font-sans: 'Life Savers', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* Elevation */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);

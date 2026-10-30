@@ -1,27 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Life_Savers, Meow_Script, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
-const meowScript = Meow_Script({
-  variable: "--font-meow",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap"
-});
-
-const lifeSavers = Life_Savers({
-  variable: "--font-life-savers",
-  subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  display: "swap"
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap"
-});
 
 export const viewport: Viewport = {
   themeColor: "#fafbfc",
@@ -61,12 +39,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      data-scroll-behavior="smooth"
-      className={`${meowScript.variable} ${lifeSavers.variable} ${jetbrainsMono.variable} antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang="en" data-scroll-behavior="smooth" className="antialiased" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Life+Savers:wght@400;700;800&family=Meow+Script&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );
