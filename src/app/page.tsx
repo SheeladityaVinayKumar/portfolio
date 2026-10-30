@@ -540,30 +540,6 @@ export default function Home() {
                         </svg>
                         <span>Copy Email</span>
                       </button>
-
-                      <a
-                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${encodeURIComponent("Hello Sheeladitya - Software Engineering Opportunity")}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary"
-                        style={{ fontSize: "0.8rem", padding: "6px 12px" }}
-                        title="Open Gmail composer directly in browser"
-                      >
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                          <polyline points="15 3 21 3 21 9" />
-                          <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        <span>Open in Gmail</span>
-                      </a>
-
-                      <a
-                        href={`mailto:${profile.email}`}
-                        style={{ fontSize: "0.76rem", color: "var(--text-muted)", marginLeft: "auto", textDecoration: "underline" }}
-                        title="Open default desktop mail application (Outlook / Apple Mail)"
-                      >
-                        Mail App
-                      </a>
                     </div>
                   </div>
 
