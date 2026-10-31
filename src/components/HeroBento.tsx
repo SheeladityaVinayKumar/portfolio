@@ -38,10 +38,11 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
               <div className="hero-bio-top">
                 <div className="hero-avatar-wrapper">
                   <Image
-                    src="/assets/images/avatar.jpg"
+                    src="/assets/images/sheeladitya.png"
                     alt={profile.name}
                     width={240}
                     height={240}
+                    quality={100}
                     className="hero-avatar-img"
                     priority
                   />

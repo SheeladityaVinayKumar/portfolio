@@ -11,19 +11,18 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 68,
-          background: '#09090b',
+          fontSize: 72,
+          background: '#EA580C',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#ffffff',
-          borderRadius: '24px',
-          fontWeight: 800,
+          borderRadius: '28px',
+          fontWeight: 900,
           fontFamily: 'system-ui, -apple-system, sans-serif',
-          letterSpacing: '-2px',
-          border: '4px solid #3f3f46',
+          letterSpacing: '-3px',
         }}
       >
         SV
