@@ -243,7 +243,12 @@ I can answer any questions regarding his software engineering experience at Colo
 What would you like to explore?`;
     }
 
-    // Default Fallback
+    // Hobbies query
+    if (q.includes("hobby") || q.includes("hobbies") || q.includes("interest") || q.includes("free time") || q.includes("spare time")) {
+      return `🎮 **Sheeladitya's Personal Interests & Hobbies:**
+• **Gaming & Competitive Play**: Long-time BGMI (Battlegrounds Mobile India) enthusiast and tactical shooter player. This sharpens quick decision-making and teamwork under pressure, which he brings to fast-paced software engineering sprints.
+*(Note: Sheeladitya is strictly into competitive gaming and does not engage in creative writing, blogging, or playing musical instruments).*`;
+    }
     return `Thank you for asking! As Sheeladitya's AI representative, I can confirm he specializes in **React, Next.js, JavaScript, Python, Django, and WordPress**.
 
 During his time at **ColoredCow**, he worked on real-world production projects including the *SankalpTaru Huge* app, *G1 Ground Team* app, and the *SankalpTaru Foundation* e-commerce web platform.

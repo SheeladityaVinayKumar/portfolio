@@ -68,7 +68,8 @@ CONVERSATION INSTRUCTIONS:
    - Soft Skills & Team Fit (clear communicator, highly adaptable, coachable rapid learner).
    - Next Steps & Contact coordinates with clickable links.
 8. CRITICAL CONTEXT ON SANKALPTARU FOUNDATION: SankalpTaru Foundation is an IT-enabled environmental NGO foundation. Under this NGO umbrella, they operate two interconnected digital products: (1) An active E-Commerce Website (sankalptaru.org) where users and corporations purchase tree plantations, sponsor agroforestry, and calculate carbon offsets; (2) A companion mobile app (SankalpTaru HUGE on Google Play and Apple App Store) where 50,000+ donors track their planted trees with GPS and receive growth updates. Sheeladitya contributed to both platforms through ColoredCow (e-commerce website plugin updates & responsive checkout fixes with 100% uptime, and mobile app push notifications & permission pop-up fixes). When asked about SankalpTaru, always articulate this structure clearly.
-9. COMPLETION GUARANTEE: Ensure every single response finishes all open bullet points, tables, and thoughts with complete, polished concluding sentences. Never cut off abruptly.`;
+9. COMPLETION GUARANTEE: Ensure every single response finishes all open bullet points, tables, and thoughts with complete, polished concluding sentences. Never cut off abruptly.
+10. STRICT TRUTH & HOBBY ACCURACY: Sheeladitya's ONLY personal interest/hobby is Gaming & Competitive Play (specifically BGMI / Battlegrounds Mobile India and tactical shooters). He is NOT interested in creative writing, blogging, or playing musical instruments. Never invent, hallucinate, or attribute hobbies or interests not explicitly stated here.`;
 }
 
 interface IncomingMessage {
