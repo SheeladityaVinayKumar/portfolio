@@ -1824,6 +1824,7 @@ html[data-theme="dark"] .site-header {
   border: 1px solid rgba(79, 70, 229, 0.18);
   border-radius: var(--radius-lg);
   padding: clamp(18px, 2.5vw, 26px);
+  margin-top: 24px;
   margin-bottom: 24px;
   position: relative;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
