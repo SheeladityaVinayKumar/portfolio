@@ -100,10 +100,11 @@ export default function Home() {
             <Image
               src="/assets/images/sheeladitya.png"
               alt={profile.name}
-              width={104}
-              height={104}
+              width={240}
+              height={240}
+              quality={100}
               className="hero-avatar-img"
-              loading="eager"
+              priority
             />
           </div>
 

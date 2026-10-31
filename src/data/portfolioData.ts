@@ -144,7 +144,7 @@ export const PORTFOLIO_DATA = {
       categoryLabel: "NGO E-Commerce Website",
       badge: "ColoredCow Engineering",
       badgeAccent: "amber",
-      image: "/assets/images/project-fullstack-cloud.jpg",
+      image: "/assets/images/project-cluster-mesh.jpg",
       impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
       summary:
         "Maintained the high-traffic live e-commerce platform for SankalpTaru Foundation (sankalptaru.org), an environmental NGO foundation where thousands of individuals and corporate partners buy tree plantations, sponsor rural agroforestry, and calculate carbon offsets. Audited and updated mission-critical WordPress/WooCommerce plugins, resolved stylesheet conflict regressions, and fixed responsive layout glitches across donation and checkout funnels with 100% production uptime.",
