@@ -497,8 +497,11 @@ html[data-theme="dark"] .site-header {
   height: clamp(180px, 18vw, 240px);
   border-radius: clamp(32px, 3.2vw, 40px);
   object-fit: cover;
+  object-position: center 20%;
   border: 4px solid var(--bg-surface);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .hero-content {
