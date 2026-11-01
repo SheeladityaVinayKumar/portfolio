@@ -464,15 +464,27 @@ html[data-theme="dark"] .site-header {
 
 .hero-profile-box {
   display: flex;
-  gap: clamp(24px, 3.5vw, 44px);
-  align-items: flex-start;
-  padding: clamp(26px, 3.5vw, 48px);
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  text-align: center;
+  padding: 24px 20px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
-  margin-top: 24px;
+  margin-top: 20px;
   width: 100%;
+}
+
+@media (min-width: 861px) {
+  .hero-profile-box {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding: clamp(32px, 3.5vw, 48px);
+    gap: 40px;
+  }
 }
 
 .hero-bio-top {

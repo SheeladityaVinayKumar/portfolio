@@ -35,7 +35,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Header onOpenAIAgent={() => handleOpenAI()} />
+      <Header />
 
       <main className="container" style={{ paddingTop: 36, paddingBottom: 60 }}>
         {/* Header Block */}
