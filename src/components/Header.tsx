@@ -4,17 +4,12 @@ import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-interface HeaderProps {
-  onOpenAIAgent: () => void;
-}
-
-export function Header({ onOpenAIAgent }: HeaderProps) {
+export function Header() {
   return (
     <header className="site-header">
       <div className="container">
         <nav className="nav-inner" aria-label="Main Navigation">
           <div className="nav-brand">
-            <span className="brand-dot"></span>
             <span className="brand-title">Sheeladitya&apos;s Portfolio</span>
           </div>
 

@@ -89,7 +89,7 @@ export default function Home() {
 
   return (
     <>
-      <Header onOpenAIAgent={() => handleOpenAI()} />
+      <Header />
 
       <main className="container">
         {/* ==========================================================================
@@ -176,7 +176,6 @@ export default function Home() {
         <section className="recruiter-fast-track" aria-label="Recruiter Summary">
           <div className="recruiter-header">
             <div className="recruiter-badge">
-              <span className="pulse-dot"></span>
               <span>⚡ Recruiter Fast-Track &middot; 30-Second Summary</span>
             </div>
             <button
