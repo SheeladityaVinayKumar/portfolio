@@ -106,22 +106,11 @@ export default function ProjectsPage() {
                       {p.subtitle}
                     </div>
 
-                    {p.impactMetric && (
-                      <div className="project-impact-strip">
-                        <span className="impact-pill">🚀 Key Impact</span>
-                        <span className="impact-text">{p.impactMetric}</span>
-                      </div>
-                    )}
 
                     <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: 1.65, marginBottom: 18 }}>
                       {p.overview}
                     </p>
 
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
-                      {p.tech.map((t, idx) => (
-                        <span key={idx} className="tech-tag">{t}</span>
-                      ))}
-                    </div>
 
                     {/* Project Links & Code Access */}
                     <div className="project-links-row" style={{ marginBottom: 20 }}>
@@ -138,7 +127,7 @@ export default function ProjectsPage() {
                             <polyline points="15 3 21 3 21 9" />
                             <line x1="10" y1="14" x2="21" y2="3" />
                           </svg>
-                          <span>Live Demo</span>
+                          <span>Live</span>
                         </a>
                       )}
                       {p.appUrl && (
@@ -184,15 +173,6 @@ export default function ProjectsPage() {
                           <span>GitHub Repository</span>
                         </a>
                       )}
-                      {p.repoType === "internal" && (
-                        <span className="badge-repo-status internal" title={p.accessNote || "Internal Production Work"}>
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                          </svg>
-                          <span>{p.accessNote || "Internal Production"}</span>
-                        </span>
-                      )}
                       {p.repoType === "client" && (
                         <span className="badge-repo-status client" title={p.accessNote || "Live Production Website"}>
                           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -201,6 +181,15 @@ export default function ProjectsPage() {
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z" />
                           </svg>
                           <span>{p.accessNote || "Live Production"}</span>
+                        </span>
+                      )}
+                      {p.repoType === "internal" && (
+                        <span className="badge-repo-status internal" title={p.accessNote || "Internal SankalpTaru Team App · Not for Public Use"}>
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                          </svg>
+                          <span>{p.accessNote || "Internal SankalpTaru Team App · Not for Public Use"}</span>
                         </span>
                       )}
                     </div>
@@ -239,40 +228,6 @@ export default function ProjectsPage() {
                       </ul>
                     </div>
 
-                    {p.codeSnippet && (
-                      <div style={{ marginTop: 18 }}>
-                        <button
-                          onClick={() => toggleSnippet(p.id)}
-                          className="code-toggle-btn"
-                          type="button"
-                        >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polyline points="16 18 22 12 16 6" />
-                            <polyline points="8 6 2 12 8 18" />
-                          </svg>
-                          <span>
-                            {expandedSnippets[p.id]
-                              ? "Hide Code Architecture"
-                              : `View Code Architecture: ${p.codeSnippet.title}`}
-                          </span>
-                          <span style={{ fontSize: "0.72rem", marginLeft: 4 }}>
-                            {expandedSnippets[p.id] ? "▲" : "▼"}
-                          </span>
-                        </button>
-
-                        {expandedSnippets[p.id] && (
-                          <div className="project-code-wrapper">
-                            <div className="project-code-header">
-                              <span>{p.codeSnippet.title}</span>
-                              <span className="code-lang-tag">{p.codeSnippet.language}</span>
-                            </div>
-                            <pre className="project-code-pre">
-                              <code>{p.codeSnippet.code}</code>
-                            </pre>
-                          </div>
-                        )}
-                      </div>
-                    )}
 
                     <div style={{ paddingTop: 20, marginTop: 24, borderTop: "1px solid var(--border-light)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <button

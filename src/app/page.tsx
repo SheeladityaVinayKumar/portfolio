@@ -274,22 +274,9 @@ export default function Home() {
                     {p.subtitle}
                   </div>
 
-                  {p.impactMetric && (
-                    <div className="project-impact-strip">
-                      <span className="impact-pill">🚀 Key Impact</span>
-                      <span className="impact-text">{p.impactMetric}</span>
-                    </div>
-                  )}
 
                   <p className="project-card-desc">{p.summary}</p>
 
-                  <div className="project-card-tech">
-                    {p.tech.map((t, idx) => (
-                      <span key={idx} className="tech-tag">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
 
                   {/* Project Links / Repo Status Row */}
                   <div className="project-links-row">
@@ -306,7 +293,7 @@ export default function Home() {
                           <polyline points="15 3 21 3 21 9" />
                           <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        <span>Live Demo</span>
+                        <span>Live</span>
                       </a>
                     )}
                     {p.appUrl && (
@@ -353,12 +340,12 @@ export default function Home() {
                       </a>
                     )}
                     {p.repoType === "internal" && (
-                      <span className="badge-repo-status internal" title={p.accessNote || "Internal Production Work"}>
+                      <span className="badge-repo-status internal" title={p.accessNote || "Internal SankalpTaru Team App · Not for Public Use"}>
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
-                        <span>Internal Production</span>
+                        <span>Internal SankalpTaru Team App &middot; Not for Public Use</span>
                       </span>
                     )}
                     {p.repoType === "client" && (

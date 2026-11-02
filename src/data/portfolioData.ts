@@ -147,30 +147,14 @@ export const PORTFOLIO_DATA = {
       image: "/assets/images/project-cluster-mesh.jpg",
       impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
       summary:
-        "Maintained the high-traffic live e-commerce platform for SankalpTaru Foundation (sankalptaru.org), an environmental NGO foundation where thousands of individuals and corporate partners buy tree plantations, sponsor rural agroforestry, and calculate carbon offsets. Audited and updated mission-critical WordPress/WooCommerce plugins, resolved stylesheet conflict regressions, and fixed responsive layout glitches across donation and checkout funnels with 100% production uptime.",
+        "Maintained the high-traffic live e-commerce platform for SankalpTaru Foundation (sankalptaru.org), auditing mission-critical WordPress plugins, eliminating stylesheet conflicts, and patching mobile responsive layout bugs across donation & checkout funnels.",
       tech: ["WordPress", "E-Commerce Architecture", "PHP", "JavaScript", "Plugin Maintenance", "Responsive UI"],
       overview:
         "Managed and updated plugins on the live SankalpTaru Foundation environmental e-commerce website (sankalptaru.org), an IT-enabled NGO platform for tree-planting purchases and carbon offset sponsorships. Resolved plugin deprecations, conflict regressions, and responsive layout issues across donation funnels.",
       problem:
-        "As an active NGO e-commerce portal handling live transactions, outdated plugins caused checkout conflicts and security vulnerabilities, while legacy CSS rules distorted mobile responsiveness during high-volume plantation drives.",
+        "Outdated plugins caused checkout conflicts and security vulnerabilities, while legacy CSS rules distorted mobile responsiveness during high-volume plantation drives.",
       solution:
-        "Executed systematic plugin updates, sanitized legacy hook calls, resolved conflicting stylesheet rules across checkout pages, and validated responsive layout integrity across all mobile and desktop viewports.",
-      codeSnippet: {
-        title: "Plugin Conflict Guard & Responsive Hook",
-        language: "php",
-        code: `// WordPress Plugin Hook Deprecation & Style Conflict Patch
-add_action('wp_enqueue_scripts', function() {
-    // Dequeue legacy broken stylesheet conflicting with mobile viewport
-    wp_dequeue_style('legacy-campaign-grid');
-    // Register modernized responsive mobile layout stylesheet
-    wp_enqueue_style(
-        'sankalptaru-responsive-core',
-        get_template_directory_uri() . '/css/responsive-core.css',
-        array(),
-        '2.4.1'
-    );
-}, 20);`
-      },
+        "Executed systematic plugin updates, sanitized legacy hook calls, resolved conflicting stylesheet rules across checkout pages, and validated responsive layout integrity.",
       highlights: [
         "Maintained continuous uptime during live production plugin updates and e-commerce transactions.",
         "Troubleshot and fixed multi-device CSS breakpoint glitches across key landing & checkout pages.",
@@ -179,7 +163,7 @@ add_action('wp_enqueue_scripts', function() {
       ],
       demoUrl: "https://sankalptaru.org",
       repoType: "client",
-      accessNote: "SankalpTaru Foundation (NGO) · Live E-Commerce Storefront (sankalptaru.org)"
+      accessNote: "Client Production Website (sankalptaru.org)"
     },
     {
       id: "sankalptaru-huge",
@@ -192,30 +176,14 @@ add_action('wp_enqueue_scripts', function() {
       image: "/assets/images/project-sankalptaru.jpg",
       impactMetric: "Restored push notifications & device permissions across 50,000+ mobile app donors",
       summary:
-        "Maintained and debugged the companion mobile app for SankalpTaru Foundation — India's leading IT-enabled environmental NGO foundation. Operating directly alongside SankalpTaru's e-commerce website (sankalptaru.org), the mobile app enables donors who purchase tree saplings to track their growth with GPS coordinates, photos, and updates. Diagnosed and resolved critical push-notification delivery drops and device permission pop-ups (camera, storage, geolocation) for 50,000+ donors on Google Play and Apple App Store.",
+        "Maintained and debugged the companion mobile app for SankalpTaru Foundation, enabling 50,000+ donors to track planted trees with GPS coordinates. Diagnosed and resolved push-notification delivery drops and device permission blockers on Google Play and App Store.",
       tech: ["Mobile Architecture", "NGO Ecosystem", "Push Notifications", "Runtime Permissions", "Git / GitHub"],
       overview:
-        "Maintained and debugged the companion mobile application (SankalpTaru HUGE) for SankalpTaru Foundation (an IT-enabled environmental NGO). The mobile app functions under the same NGO umbrella alongside their e-commerce web platform, allowing contributors to track their planted trees via GPS and receive growth updates. Resolved critical push notification delivery drops and OS permission pop-up issues.",
+        "Maintained and debugged the companion mobile application (SankalpTaru HUGE) for SankalpTaru Foundation, allowing contributors to track their planted trees via GPS and receive growth updates. Resolved critical push notification delivery drops and OS permission pop-up issues.",
       problem:
-        "Donors purchasing tree plantations through SankalpTaru's e-commerce portal and mobile app experienced silent notification delivery failures after orders, alongside runtime permission pop-up crashes on newer mobile OS versions.",
+        "Donors experienced silent notification delivery failures after orders, alongside runtime permission pop-up crashes on newer mobile OS versions.",
       solution:
-        "Diagnosed push-notification handler lifecycles, ensured reliable FCM token synchronization with donor order profiles, and refactored device runtime permission workflows to prompt users gracefully with contextual explanations.",
-      codeSnippet: {
-        title: "Push Notification Lifecycle & Permission Handler",
-        language: "typescript",
-        code: `// Contextual Permission Request & Push Channel Sync
-export async function registerPushNotificationChannel() {
-  const status = await checkNotificationPermissions();
-  if (status !== 'granted') {
-    // Prompt user with contextual rationale before requesting OS dialogue
-    await showPermissionRationaleModal();
-    const granted = await requestOSPermission();
-    if (!granted) return { success: false, reason: 'denied' };
-  }
-  const pushToken = await getDeviceFCMToken();
-  return await syncDeviceTokenToServer(pushToken);
-}`
-      },
+        "Diagnosed push-notification handler lifecycles, ensured reliable FCM token synchronization with donor order profiles, and refactored device runtime permission workflows.",
       highlights: [
         "Restored push notification delivery reliability for campaign engagement across Android and iOS.",
         "Fixed runtime permission prompts for camera, storage, and geolocation services.",
@@ -224,8 +192,37 @@ export async function registerPushNotificationChannel() {
       ],
       appUrl: "https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru",
       appStoreUrl: "https://apps.apple.com/in/app/sankalptaru-huge/id1462571187",
-      repoType: "internal",
-      accessNote: "SankalpTaru Foundation (NGO) · Companion App to sankalptaru.org"
+      repoType: "client",
+      accessNote: "Client Mobile App · Live on Google Play & App Store"
+    },
+    {
+      id: "coloredcow-website",
+      title: "ColoredCow Official Website — Platform & UI Updates",
+      subtitle: "ColoredCow · Corporate Web Platform (coloredcow.com)",
+      category: "web",
+      categoryLabel: "Company Web Platform",
+      badge: "ColoredCow Engineering",
+      badgeAccent: "indigo",
+      image: "/assets/images/project-cluster-mesh.jpg",
+      impactMetric: "Enhanced UI responsiveness & component reliability across coloredcow.com",
+      summary:
+        "Contributed to the design, maintenance, and platform updates for ColoredCow's official corporate website (coloredcow.com). Implemented modern UI updates, optimized responsive layouts across desktop and mobile viewports, and audited web components for cross-browser compatibility.",
+      tech: ["Web Architecture", "UI / UX", "Responsive Design", "Frontend Development", "Git / GitHub"],
+      overview:
+        "Contributed to frontend updates and maintenance of ColoredCow's official website (coloredcow.com), focusing on responsive UI enhancements, component consistency, and cross-device performance.",
+      problem:
+        "Maintaining high design fidelity, fast asset loading, and flawless mobile responsiveness across diverse device viewports was essential for brand engagement.",
+      solution:
+        "Optimized frontend components, refined CSS styling and layout breakpoints, and verified responsive rendering across mobile and desktop browsers.",
+      highlights: [
+        "Updated and refined UI components across coloredcow.com for seamless cross-device rendering.",
+        "Enhanced mobile responsiveness and layout stability across diverse viewport dimensions.",
+        "Collaborated with engineering teams via GitHub pull requests and design reviews.",
+        "Ensured high performance standards and clean semantic markup."
+      ],
+      demoUrl: "https://coloredcow.com",
+      repoType: "client",
+      accessNote: "Client / Corporate Platform (coloredcow.com)"
     },
     {
       id: "g1-ground-team",
@@ -238,31 +235,14 @@ export async function registerPushNotificationChannel() {
       image: "/assets/images/project-cluster-mesh.jpg",
       impactMetric: "Eliminated mobile field upload crashes and fixed mission-critical operator login bug",
       summary:
-        "Engineered multi-tier image-upload validation checks to safeguard field operations against corrupted and oversized uploads in challenging field network conditions. Diagnosed and resolved authentication session bugs that caused unexpected login failures for ground team agents.",
+        "Engineered multi-tier image-upload validation checks to safeguard field operations against corrupted uploads in challenging network conditions, and resolved authentication session bugs causing unexpected login failures.",
       tech: ["JavaScript", "Image Upload Validation", "Auth & Login Fixes", "Form Validation", "Debugging"],
       overview:
         "Strengthened reliability for ground field teams by adding rigorous image-upload validation checks and eliminating a persistent authentication login bug.",
       problem:
-        "Field agents frequently experienced failed uploads or app freezes when capturing unvalidated, oversized images in low-connectivity areas, alongside intermittent login failures.",
+        "Field agents experienced failed uploads or app freezes when capturing unvalidated, oversized images in low-connectivity areas, alongside intermittent login failures.",
       solution:
         "Introduced client-side image validation (size limits, MIME checks, resolution constraints) before network payload transmission, and debugged session token renewal during login.",
-      codeSnippet: {
-        title: "Pre-Flight Field Upload Validator",
-        language: "typescript",
-        code: `// Multi-tier Pre-Flight Validation for Unstable Field Networks
-export function validateFieldImage(file: File): ValidationResult {
-  const MAX_SIZE_MB = 5;
-  const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp'];
-
-  if (!ALLOWED_MIME.includes(file.type)) {
-    return { valid: false, error: 'Invalid format. Only JPEG, PNG, and WebP are allowed.' };
-  }
-  if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-    return { valid: false, error: \`File size (\${(file.size / 1024 / 1024).toFixed(1)}MB) exceeds 5MB limit.\` };
-  }
-  return { valid: true };
-}`
-      },
       highlights: [
         "Eliminated upload crashes by introducing pre-flight file validation and sanitization.",
         "Resolved an intermittent authentication failure preventing field operators from logging in.",
@@ -270,7 +250,7 @@ export function validateFieldImage(file: File): ValidationResult {
         "Protected backend API servers from corrupted and oversized multipart payloads."
       ],
       repoType: "internal",
-      accessNote: "Internal Field Operations App (Confidential Enterprise Repo)"
+      accessNote: "Internal SankalpTaru Team App · Not for Public Use"
     }
   ] as ProjectItem[],
 
@@ -281,6 +261,8 @@ export function validateFieldImage(file: File): ValidationResult {
       period: "November 2025 – Present",
       type: "Internship",
       points: [
+        "Successfully completed Software Engineering Internship at ColoredCow, earning formal internship completion recognition.",
+        "Contributed to ColoredCow's official corporate website (coloredcow.com): implemented UI updates, optimized responsive layouts across devices, and enhanced frontend performance.",
         "Maintained client digital platforms for SankalpTaru Foundation (an IT-enabled environmental NGO foundation operating an e-commerce website and companion mobile app):",
         "• E-Commerce Website (sankalptaru.org): Audited mission-critical WordPress plugins, eliminated stylesheet conflicts, and patched mobile responsive layout bugs across donation & checkout funnels with 100% production uptime.",
         "• Companion Mobile App (SankalpTaru HUGE on Google Play & App Store): Diagnosed and resolved critical push-notification delivery drops and device permission pop-up blockers (camera, storage, geolocation) across 50,000+ donors.",
@@ -294,7 +276,7 @@ export function validateFieldImage(file: File): ValidationResult {
     degree: "Bachelor of Technology (B.Tech)",
     major: "Computer Science and Engineering",
     institution: "BTKIT",
-    period: "2023–2027 (Expected)",
+    period: "2023–2027",
     description:
       "Rigorous computer science curriculum covering Data Structures, Algorithms, Operating Systems, Database Management Systems, and Software Engineering methodologies."
   },

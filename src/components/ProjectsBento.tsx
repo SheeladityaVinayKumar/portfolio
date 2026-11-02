@@ -114,13 +114,6 @@ export function ProjectsBento({ onSelectProject, onOpenAIAgent }: ProjectsBentoP
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.summary}</p>
 
-                <div className="project-tech-pills">
-                  {project.tech.map((t, idx) => (
-                    <span key={idx} className="tech-pill">
-                      {t}
-                    </span>
-                  ))}
-                </div>
 
                 <div className="project-links-row">
                   <button
