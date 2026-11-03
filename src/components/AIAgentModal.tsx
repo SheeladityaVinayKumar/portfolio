@@ -193,7 +193,7 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
     {
       id: "welcome",
       sender: "assistant",
-      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me anything about his software engineering experience at **ColoredCow**, production projects like **SankalpTaru Foundation** and the **G1 Ground Team app**, his React/Next.js/Python stack, or how to get in touch!"
+      text: "Hello! 👋 I'm **Stranger**, answering on behalf of **Sheeladitya Vinay Kumar**.\n\nI'm his AI representative (named after his gaming handle). Ask me anything about his software engineering experience at **ColoredCow**, production projects like the **Enterprise E-Commerce Platform** and the **G1 Ground Team app**, his React/Next.js/Python stack, or how to get in touch!"
     }
   ]);
   const [inputVal, setInputVal] = useState("");
@@ -659,10 +659,10 @@ export function AIAgentModal({ isOpen, initialPrompt, onPromptHandled, onClose }
           </button>
           <button
             className="sidepanel-chip"
-            onClick={() => sendMessage("Tell me about SankalpTaru Foundation NGO, its e-commerce website, and mobile app")}
+            onClick={() => sendMessage("Tell me about the Enterprise E-Commerce Platform website and mobile app")}
             type="button"
           >
-            🌱 SankalpTaru NGO Ecosystem
+            🛒 E-Commerce Ecosystem
           </button>
           <button
             className="sidepanel-chip"

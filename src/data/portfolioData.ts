@@ -144,7 +144,7 @@ export const PORTFOLIO_DATA = {
       categoryLabel: "E-Commerce Web Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "amber",
-      image: "/assets/images/project-cluster-mesh.jpg",
+      image: "",
       impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
       summary:
         "Maintained high-traffic enterprise e-commerce web platforms, auditing mission-critical CMS plugins, eliminating stylesheet conflicts, and patching mobile responsive layout bugs across donation and checkout funnels.",
@@ -172,7 +172,7 @@ export const PORTFOLIO_DATA = {
       categoryLabel: "Companion Mobile App",
       badge: "ColoredCow Engineering",
       badgeAccent: "emerald",
-      image: "/assets/images/project-sankalptaru.jpg",
+      image: "",
       impactMetric: "Restored push notifications & device permissions across 50,000+ app users",
       summary:
         "Maintained and debugged enterprise companion mobile applications, enabling 50,000+ users to track real-time data with GPS coordinates. Diagnosed and resolved push-notification delivery drops and device permission blockers on Google Play and App Store.",
@@ -200,7 +200,7 @@ export const PORTFOLIO_DATA = {
       categoryLabel: "Corporate Web Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "indigo",
-      image: "/assets/images/project-cluster-mesh.jpg",
+      image: "",
       impactMetric: "Enhanced UI responsiveness & component reliability across corporate web portal",
       summary:
         "Contributed to the design, maintenance, and platform updates for ColoredCow's corporate web platform. Implemented modern UI updates, optimized responsive layouts across desktop and mobile viewports, and audited web components for cross-browser compatibility.",
@@ -228,7 +228,7 @@ export const PORTFOLIO_DATA = {
       categoryLabel: "Field Operations & Mobile",
       badge: "ColoredCow Engineering",
       badgeAccent: "cyan",
-      image: "/assets/images/project-cluster-mesh.jpg",
+      image: "",
       impactMetric: "Eliminated mobile field upload crashes and fixed mission-critical operator login bug",
       summary:
         "Engineered multi-tier image-upload validation checks to safeguard field operations against corrupted uploads in challenging network conditions, and resolved authentication session bugs causing unexpected login failures.",

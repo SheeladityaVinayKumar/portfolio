@@ -22,8 +22,7 @@ export class AIAgentEngine {
       q.includes("ecommerce") ||
       q.includes("e-commerce") ||
       q.includes("enterprise") ||
-      q.includes("ngo") ||
-      q.includes("foundation");
+      q.includes("ecosystem");
 
     const isAppSpecific =
       (q.includes("huge") ||
@@ -58,8 +57,8 @@ export class AIAgentEngine {
         q.includes("store")
       ) {
         return `📱 **Enterprise Companion Mobile App Links:**
-• **Google Play Store**: [Download on Google Play](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
-• **Apple App Store**: [Download on Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)
+• **Google Play Store**: [Download on Google Play](https://play.google.com/store/apps/details?id=org.ecommerce.app)
+• **Apple App Store**: [Download on Apple App Store](https://apps.apple.com/app/ecommerce-app/id1462571187)
 
 This is the companion mobile app to enterprise e-commerce platforms. Sheeladitya resolved push notification delivery drops and OS permission pop-ups for 50,000+ users tracking data in real-time.`;
       }
@@ -72,8 +71,8 @@ Developed during SDE internship at ColoredCow:
   - Diagnosed and resolved critical push-notification delivery drops so users receive timely updates.
   - Fixed device runtime permission pop-ups (camera, storage, geolocation) across Android and iOS versions.
 • **Live App Downloads**:
-  - [Google Play Store](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
-  - [Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)`;
+  - [Google Play Store](https://play.google.com/store/apps/details?id=org.ecommerce.app)
+  - [Apple App Store](https://apps.apple.com/app/ecommerce-app/id1462571187)`;
     }
 
     if (isPlatformQuery && isWebSpecific) {
@@ -99,7 +98,7 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
 2. 📱 **Companion Mobile App**:
    • Mobile application for **50,000+ users** to track data with live GPS coordinates, photos, and status updates.
    • **Sheeladitya's Impact**: Diagnosed push-notification delivery drops and fixed runtime permission pop-up blockers (camera, storage, geolocation) across Android and iOS.
-   • **App Links**: [Google Play Store](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru) · [Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)`;
+   • **App Links**: [Google Play Store](https://play.google.com/store/apps/details?id=org.ecommerce.app) · [Apple App Store](https://apps.apple.com/app/ecommerce-app/id1462571187)`;
     }
 
     // 2. Specific Project: Field Operations App
@@ -124,9 +123,9 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
     ) {
       return `🔗 **Quick Project & Profile Links:**
 • 📄 **Resume / CV**: [Open Google Drive Resume](${this.data.profile.resumeUrl})
-• 🌐 **Enterprise E-Commerce Web**: [Live Storefront](https://sankalptaru.org)
-• 📱 **Enterprise Mobile App (Android)**: [Google Play Store](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru)
-• 🍏 **Enterprise Mobile App (iOS)**: [Apple App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187)
+• 🌐 **Enterprise E-Commerce Web**: [Live Storefront](https://example.com)
+• 📱 **Enterprise Mobile App (Android)**: [Google Play Store](https://play.google.com/store/apps/details?id=org.ecommerce.app)
+• 🍏 **Enterprise Mobile App (iOS)**: [Apple App Store](https://apps.apple.com/app/ecommerce-app/id1462571187)
 • 🐙 **Sheeladitya's GitHub Profile**: [github.com/SheeladityaVinayKumar](${this.data.profile.githubUrl})`;
     }
 
@@ -154,7 +153,7 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
       return `Here are Sheeladitya's core projects directly from his resume:
 
 1. 🌐 **Enterprise E-Commerce Website**: Live online storefront — audited plugins and fixed responsive checkout UI with 100% uptime.
-2. 📱 **Enterprise Companion Mobile App**: Mobile tracking companion app for 50,000+ users — resolved push notification delivery drops and permission pop-ups. ([Google Play](https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru) · [App Store](https://apps.apple.com/in/app/sankalptaru-huge/id1462571187))
+2. 📱 **Enterprise Companion Mobile App**: Mobile tracking companion app for 50,000+ users — resolved push notification delivery drops and permission pop-ups. ([Google Play](https://play.google.com/store/apps/details?id=org.ecommerce.app) · [App Store](https://apps.apple.com/app/ecommerce-app/id1462571187))
 3. 🛡️ **Field Operations Mobile App**: Engineered pre-flight image-upload validation checks and fixed critical login session bugs. *(Internal production codebase)*
 
 *Click any project card to view its complete architecture deep-dive!*`;

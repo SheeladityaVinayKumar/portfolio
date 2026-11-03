@@ -192,7 +192,7 @@ export function ContactBento({ onShowToast }: ContactBentoProps) {
                 <textarea
                   id="form-message"
                   className="form-textarea"
-                  placeholder="Hello Sheeladitya, we saw your production work on SankalpTaru Foundation and would love to connect..."
+                  placeholder="Hello Sheeladitya, we saw your production work on Enterprise E-Commerce Platform and would love to connect..."
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
