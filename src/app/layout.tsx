@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Django",
     "WordPress",
     "ColoredCow",
-    "SankalpTaru",
+    "E-Commerce Platform",
     "G1 Ground Team"
   ],
   authors: [{ name: "Sheeladitya Vinay Kumar" }],
