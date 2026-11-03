@@ -137,22 +137,22 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
-      id: "sankalptaru-web",
-      title: "SankalpTaru Foundation — E-Commerce Website & Platform Architecture",
-      subtitle: "SankalpTaru Foundation (NGO) · Live E-Commerce Storefront (sankalptaru.org)",
+      id: "web-ecommerce-platform",
+      title: "Enterprise E-Commerce Platform & Web Architecture",
+      subtitle: "High-Traffic Web Platform · Plugin Audits & Responsive Patches",
       category: "web",
-      categoryLabel: "NGO E-Commerce Website",
+      categoryLabel: "E-Commerce Web Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "amber",
-      image: "/assets/images/project-cluster-mesh.jpg",
+      image: "",
       impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
       summary:
-        "Maintained the high-traffic live e-commerce platform for SankalpTaru Foundation (sankalptaru.org), auditing mission-critical WordPress plugins, eliminating stylesheet conflicts, and patching mobile responsive layout bugs across donation & checkout funnels.",
+        "Maintained high-traffic enterprise e-commerce web platforms, auditing mission-critical CMS plugins, eliminating stylesheet conflicts, and patching mobile responsive layout bugs across donation and checkout funnels.",
       tech: ["WordPress", "E-Commerce Architecture", "PHP", "JavaScript", "Plugin Maintenance", "Responsive UI"],
       overview:
-        "Managed and updated plugins on the live SankalpTaru Foundation environmental e-commerce website (sankalptaru.org), an IT-enabled NGO platform for tree-planting purchases and carbon offset sponsorships. Resolved plugin deprecations, conflict regressions, and responsive layout issues across donation funnels.",
+        "Managed and updated plugins on live enterprise and foundation web platforms, resolving plugin deprecations, conflict regressions, and responsive layout issues across transaction funnels.",
       problem:
-        "Outdated plugins caused checkout conflicts and security vulnerabilities, while legacy CSS rules distorted mobile responsiveness during high-volume plantation drives.",
+        "Outdated plugins caused checkout conflicts and security vulnerabilities, while legacy CSS rules distorted mobile responsiveness during high-traffic user events.",
       solution:
         "Executed systematic plugin updates, sanitized legacy hook calls, resolved conflicting stylesheet rules across checkout pages, and validated responsive layout integrity.",
       highlights: [
@@ -161,78 +161,74 @@ export const PORTFOLIO_DATA = {
         "Enhanced form submission responsiveness and web asset loading times.",
         "Collaborated via GitHub PR workflows incorporating senior engineering reviews."
       ],
-      demoUrl: "https://sankalptaru.org",
       repoType: "client",
-      accessNote: "Client Production Website (sankalptaru.org)"
+      accessNote: "Production Enterprise Platform"
     },
     {
-      id: "sankalptaru-huge",
-      title: "SankalpTaru HUGE — NGO Companion Mobile App",
-      subtitle: "SankalpTaru Foundation (NGO) · Mobile Tree Tracking & Push Notifications",
+      id: "mobile-companion-app",
+      title: "Enterprise Mobile Companion App & Push Notification System",
+      subtitle: "Mobile Tracking App · Push Notifications & Runtime Permissions",
       category: "mobile",
-      categoryLabel: "NGO Companion App",
+      categoryLabel: "Companion Mobile App",
       badge: "ColoredCow Engineering",
       badgeAccent: "emerald",
-      image: "/assets/images/project-sankalptaru.jpg",
-      impactMetric: "Restored push notifications & device permissions across 50,000+ mobile app donors",
+      image: "",
+      impactMetric: "Restored push notifications & device permissions across 50,000+ app users",
       summary:
-        "Maintained and debugged the companion mobile app for SankalpTaru Foundation, enabling 50,000+ donors to track planted trees with GPS coordinates. Diagnosed and resolved push-notification delivery drops and device permission blockers on Google Play and App Store.",
-      tech: ["Mobile Architecture", "NGO Ecosystem", "Push Notifications", "Runtime Permissions", "Git / GitHub"],
+        "Maintained and debugged enterprise companion mobile applications, enabling 50,000+ users to track real-time data with GPS coordinates. Diagnosed and resolved push-notification delivery drops and device permission blockers on Google Play and App Store.",
+      tech: ["Mobile Architecture", "Push Notifications", "Runtime Permissions", "Git / GitHub"],
       overview:
-        "Maintained and debugged the companion mobile application (SankalpTaru HUGE) for SankalpTaru Foundation, allowing contributors to track their planted trees via GPS and receive growth updates. Resolved critical push notification delivery drops and OS permission pop-up issues.",
+        "Maintained and debugged enterprise companion mobile applications, allowing contributors to track data via GPS and receive activity updates. Resolved critical push notification delivery drops and OS permission pop-up issues.",
       problem:
-        "Donors experienced silent notification delivery failures after orders, alongside runtime permission pop-up crashes on newer mobile OS versions.",
+        "Users experienced silent notification delivery failures after orders, alongside runtime permission pop-up crashes on newer mobile OS versions.",
       solution:
-        "Diagnosed push-notification handler lifecycles, ensured reliable FCM token synchronization with donor order profiles, and refactored device runtime permission workflows.",
+        "Diagnosed push-notification handler lifecycles, ensured reliable token synchronization with user order profiles, and refactored device runtime permission workflows.",
       highlights: [
-        "Restored push notification delivery reliability for campaign engagement across Android and iOS.",
+        "Restored push notification delivery reliability for engagement across Android and iOS.",
         "Fixed runtime permission prompts for camera, storage, and geolocation services.",
         "Conducted thorough testing across diverse Android and iOS device configurations.",
-        "Integrated seamlessly with existing team Git/GitHub workflows following reviewer feedback."
+        "Integrated seamlessly with team Git/GitHub workflows following reviewer feedback."
       ],
-      appUrl: "https://play.google.com/store/apps/details?id=org.sankalptaru.sankalptaru",
-      appStoreUrl: "https://apps.apple.com/in/app/sankalptaru-huge/id1462571187",
       repoType: "client",
-      accessNote: "Client Mobile App · Live on Google Play & App Store"
+      accessNote: "Mobile App · Live on Google Play & App Store"
     },
     {
-      id: "coloredcow-website",
-      title: "ColoredCow Official Website — Platform & UI Updates",
-      subtitle: "ColoredCow · Corporate Web Platform (coloredcow.com)",
+      id: "corporate-web-platform",
+      title: "ColoredCow Corporate Web Platform — UI & Responsive Updates",
+      subtitle: "Corporate Web Platform · UI & Responsive Optimization",
       category: "web",
-      categoryLabel: "Company Web Platform",
+      categoryLabel: "Corporate Web Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "indigo",
-      image: "/assets/images/project-cluster-mesh.jpg",
-      impactMetric: "Enhanced UI responsiveness & component reliability across coloredcow.com",
+      image: "",
+      impactMetric: "Enhanced UI responsiveness & component reliability across corporate web portal",
       summary:
-        "Contributed to the design, maintenance, and platform updates for ColoredCow's official corporate website (coloredcow.com). Implemented modern UI updates, optimized responsive layouts across desktop and mobile viewports, and audited web components for cross-browser compatibility.",
+        "Contributed to the design, maintenance, and platform updates for ColoredCow's corporate web platform. Implemented modern UI updates, optimized responsive layouts across desktop and mobile viewports, and audited web components for cross-browser compatibility.",
       tech: ["Web Architecture", "UI / UX", "Responsive Design", "Frontend Development", "Git / GitHub"],
       overview:
-        "Contributed to frontend updates and maintenance of ColoredCow's official website (coloredcow.com), focusing on responsive UI enhancements, component consistency, and cross-device performance.",
+        "Contributed to frontend updates and maintenance of corporate web platforms, focusing on responsive UI enhancements, component consistency, and cross-device performance.",
       problem:
         "Maintaining high design fidelity, fast asset loading, and flawless mobile responsiveness across diverse device viewports was essential for brand engagement.",
       solution:
         "Optimized frontend components, refined CSS styling and layout breakpoints, and verified responsive rendering across mobile and desktop browsers.",
       highlights: [
-        "Updated and refined UI components across coloredcow.com for seamless cross-device rendering.",
+        "Updated and refined UI components across web portals for seamless cross-device rendering.",
         "Enhanced mobile responsiveness and layout stability across diverse viewport dimensions.",
         "Collaborated with engineering teams via GitHub pull requests and design reviews.",
         "Ensured high performance standards and clean semantic markup."
       ],
-      demoUrl: "https://coloredcow.com",
       repoType: "client",
-      accessNote: "Client / Corporate Platform (coloredcow.com)"
+      accessNote: "Corporate Web Platform"
     },
     {
-      id: "g1-ground-team",
-      title: "G1 Ground Team App",
-      subtitle: "Client/Server Image-Upload Validation & Login Authentication Fix",
+      id: "ground-team-mobile-app",
+      title: "Field Operations & Ground Team Mobile App",
+      subtitle: "Image-Upload Validation & Login Authentication Fix",
       category: "mobile",
       categoryLabel: "Field Operations & Mobile",
       badge: "ColoredCow Engineering",
       badgeAccent: "cyan",
-      image: "/assets/images/project-cluster-mesh.jpg",
+      image: "",
       impactMetric: "Eliminated mobile field upload crashes and fixed mission-critical operator login bug",
       summary:
         "Engineered multi-tier image-upload validation checks to safeguard field operations against corrupted uploads in challenging network conditions, and resolved authentication session bugs causing unexpected login failures.",
@@ -250,7 +246,7 @@ export const PORTFOLIO_DATA = {
         "Protected backend API servers from corrupted and oversized multipart payloads."
       ],
       repoType: "internal",
-      accessNote: "Internal SankalpTaru Team App · Not for Public Use"
+      accessNote: "Internal Team App · Not for Public Use"
     }
   ] as ProjectItem[],
 
@@ -262,11 +258,10 @@ export const PORTFOLIO_DATA = {
       type: "Internship",
       points: [
         "Successfully completed Software Engineering Internship at ColoredCow, earning formal internship completion recognition.",
-        "Contributed to ColoredCow's official corporate website (coloredcow.com): implemented UI updates, optimized responsive layouts across devices, and enhanced frontend performance.",
-        "Maintained client digital platforms for SankalpTaru Foundation (an IT-enabled environmental NGO foundation operating an e-commerce website and companion mobile app):",
-        "• E-Commerce Website (sankalptaru.org): Audited mission-critical WordPress plugins, eliminated stylesheet conflicts, and patched mobile responsive layout bugs across donation & checkout funnels with 100% production uptime.",
-        "• Companion Mobile App (SankalpTaru HUGE on Google Play & App Store): Diagnosed and resolved critical push-notification delivery drops and device permission pop-up blockers (camera, storage, geolocation) across 50,000+ donors.",
-        "Engineered client-side pre-flight image upload validation (file size constraints, MIME integrity checks) and debugged session authentication in the G1 Ground Team app, preventing field app crashes in low-bandwidth regions.",
+        "Contributed to enterprise web platforms and corporate websites: implemented UI updates, optimized responsive layouts across devices, and enhanced frontend performance.",
+        "Maintained and audited mission-critical CMS plugins, eliminated stylesheet conflicts, and patched mobile responsive layout bugs across transaction funnels with 100% production uptime.",
+        "Maintained and debugged enterprise companion mobile applications, resolving critical push-notification delivery drops and device permission blockers (camera, storage, geolocation) across 50,000+ users on Google Play and App Store.",
+        "Engineered client-side pre-flight image upload validation (file size constraints, MIME integrity checks) and debugged session authentication in internal field operations apps, preventing app crashes in low-bandwidth regions.",
         "Contributed to clean code standards across team-based Git/GitHub workflows, authoring focused pull requests and actively incorporating senior engineering feedback."
       ]
     }

@@ -340,12 +340,12 @@ export default function Home() {
                       </a>
                     )}
                     {p.repoType === "internal" && (
-                      <span className="badge-repo-status internal" title={p.accessNote || "Internal SankalpTaru Team App · Not for Public Use"}>
+                      <span className="badge-repo-status internal" title={p.accessNote || "Internal Team App · Not for Public Use"}>
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
-                        <span>Internal SankalpTaru Team App &middot; Not for Public Use</span>
+                        <span>Internal Team App &middot; Not for Public Use</span>
                       </span>
                     )}
                     {p.repoType === "client" && (

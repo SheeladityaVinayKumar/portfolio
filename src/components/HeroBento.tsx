@@ -131,10 +131,10 @@ export function HeroBento({ onOpenAIAgent, onShowToast }: HeroBentoProps) {
                 </button>
                 <button
                   className="ai-chip-btn"
-                  onClick={() => onOpenAIAgent("Tell me about SankalpTaru Foundation NGO, its e-commerce website, and mobile app")}
+                  onClick={() => onOpenAIAgent("Tell me about the Enterprise E-Commerce Platform website and mobile app")}
                   type="button"
                 >
-                  <span>🌱 SankalpTaru NGO Ecosystem</span>
+                  <span>🛒 E-Commerce Platform Ecosystem</span>
                   <span style={{ fontSize: "0.8rem" }}>&rarr;</span>
                 </button>
                 <button

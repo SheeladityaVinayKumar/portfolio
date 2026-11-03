@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Django",
     "WordPress",
     "ColoredCow",
-    "SankalpTaru",
+    "E-Commerce Platform",
     "G1 Ground Team"
   ],
   authors: [{ name: "Sheeladitya Vinay Kumar" }],
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Sheeladitya Vinay Kumar | Software Engineer Portfolio",
     description:
       "Software Engineer portfolio featuring Apple Bento Grid, interactive terminal, and built-in AI Agent representative.",
-    images: ["/assets/images/avatar.jpg"]
+    images: ["/assets/images/sheeladitya.png"]
   }
 };
 
