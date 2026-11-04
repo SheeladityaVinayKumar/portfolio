@@ -55,7 +55,7 @@ export const PORTFOLIO_DATA = {
 
   metrics: [
     {
-      value: "1+ Year",
+      value: "10 Months",
       label: "Software Engineering Experience",
       detail: "Hands-on software development at ColoredCow",
       accent: "indigo" as const
@@ -254,7 +254,7 @@ export const PORTFOLIO_DATA = {
     {
       role: "Software Development Engineer (SDE) Intern",
       company: "ColoredCow",
-      period: "November 2025 – Present",
+      period: "November 2025 – September 2026",
       type: "Internship",
       points: [
         "Successfully completed Software Engineering Internship at ColoredCow, earning formal internship completion recognition.",
