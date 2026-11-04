@@ -161,7 +161,7 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
 
     // 6. Experience at ColoredCow
     if (q.includes("experience") || q.includes("coloredcow") || q.includes("job") || q.includes("intern") || q.includes("trainee") || q.includes("sde")) {
-      return `Sheeladitya works as a **Software Development Engineer (SDE) Intern at ColoredCow** (Nov 2025 – Present), supporting engineering across enterprise web platforms and internal field operations:
+      return `Sheeladitya worked as a **Software Development Engineer (SDE) Intern at ColoredCow** (November 2025 – September 2026), supporting engineering across enterprise web platforms and internal field operations:
 • **Enterprise E-Commerce Web**: Audited plugins and resolved responsive layout regressions across donation & checkout funnels with 100% uptime.
 • **Companion Mobile App**: Resolved push notifications & permission pop-up issues for 50,000+ users on Google Play & App Store.
 • **Field Operations App**: Added multi-tier pre-flight image-upload validation checks and fixed authentication login bugs in field operations.
