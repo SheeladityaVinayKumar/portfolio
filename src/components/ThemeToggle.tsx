@@ -1,21 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useSyncExternalStore } from "react";
+
+const subscribe = () => () => {};
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-      return true;
-    }
-    return false;
-  });
+  const isDark = useSyncExternalStore(
+    subscribe,
+    () => typeof window !== "undefined" && localStorage.getItem("theme") === "dark",
+    () => false
+  );
 
   const toggle = () => {
     const next = !isDark;
-    setIsDark(next);
     if (next) {
       document.documentElement.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
@@ -23,6 +20,7 @@ export function ThemeToggle() {
       document.documentElement.removeAttribute("data-theme");
       localStorage.setItem("theme", "light");
     }
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -43,7 +41,7 @@ export function ThemeToggle() {
         color: "var(--text-muted)",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        flexShrink: 0,
+        flexShrink: 0
       }}
     >
       {isDark ? (

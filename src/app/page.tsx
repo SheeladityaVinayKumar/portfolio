@@ -604,6 +604,7 @@ export default function Home() {
                     placeholder="alex@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    autoComplete="off"
                     suppressHydrationWarning
                   />
                 </div>

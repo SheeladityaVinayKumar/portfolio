@@ -86,6 +86,74 @@ html[data-theme="dark"] {
   --shadow-drawer: -10px 0 35px rgba(0, 0, 0, 0.4);
 }
 
+/* Dark Mode explicit overrides for fixed-background components (Header, Footer, Chat Sidepanel, Floating Launcher) */
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .sidepanel-drawer,
+html[data-theme="dark"] .sidepanel-header,
+html[data-theme="dark"] .sidepanel-chips-tray,
+html[data-theme="dark"] .sidepanel-input-wrap,
+html[data-theme="dark"] .sidepanel-input,
+html[data-theme="dark"] .sidepanel-minimized-dock,
+html[data-theme="dark"] .floating-launcher-btn {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .sidepanel-input {
+  background: var(--bg-subtle) !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .sidepanel-input:focus {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+html[data-theme="dark"] .sidepanel-chat-area {
+  background: var(--bg-page) !important;
+}
+
+html[data-theme="dark"] .chat-bubble.assistant {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .recruiter-card,
+html[data-theme="dark"] .skill-col-card,
+html[data-theme="dark"] .clean-card,
+html[data-theme="dark"] .metric-card,
+html[data-theme="dark"] .project-card {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .nav-contact-btn {
+  background: var(--text-primary) !important;
+  color: var(--bg-page) !important;
+}
+
+html[data-theme="dark"] .nav-contact-btn:hover {
+  background: #E4E4E7 !important;
+  color: var(--bg-page) !important;
+}
+
+html[data-theme="dark"] input:-webkit-autofill,
+html[data-theme="dark"] input:-webkit-autofill:hover,
+html[data-theme="dark"] input:-webkit-autofill:focus,
+html[data-theme="dark"] textarea:-webkit-autofill,
+html[data-theme="dark"] textarea:-webkit-autofill:hover,
+html[data-theme="dark"] textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #1A1A1A inset !important;
+  -webkit-text-fill-color: #F4F4F5 !important;
+  caret-color: #F4F4F5 !important;
+  background-color: #1A1A1A !important;
+}
+
 /* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
