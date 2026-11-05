@@ -120,17 +120,14 @@ html[data-theme="dark"] .project-card {
   border-color: var(--border-subtle) !important;
 }
 
-html[data-theme="dark"] .recruiter-ai-ask-btn,
-html[data-theme="dark"] .btn-secondary,
-html[data-theme="dark"] .filter-pill,
-html[data-theme="dark"] .sidepanel-chip,
-html[data-theme="dark"] .sidepanel-input,
-html[data-theme="dark"] .form-input,
-html[data-theme="dark"] .form-textarea {
-  background: var(--bg-surface) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border-subtle) !important;
-  -webkit-text-fill-color: var(--text-primary) !important;
+html[data-theme="dark"] .nav-contact-btn {
+  background: var(--text-primary) !important;
+  color: var(--bg-page) !important;
+}
+
+html[data-theme="dark"] .nav-contact-btn:hover {
+  background: #E4E4E7 !important;
+  color: var(--bg-page) !important;
 }
 
 html[data-theme="dark"] input:-webkit-autofill,
