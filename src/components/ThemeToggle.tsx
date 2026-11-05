@@ -1,17 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return false;
+  const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem("theme");
     if (saved === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
-      return true;
+      setIsDark(true);
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      setIsDark(false);
     }
-    return false;
-  });
+  }, []);
 
   const toggle = () => {
     const next = !isDark;
@@ -24,6 +29,22 @@ export function ThemeToggle() {
       localStorage.setItem("theme", "light");
     }
   };
+
+  // Prevent server/client hydration mismatch by rendering a neutral placeholder until mounted
+  if (!mounted) {
+    return (
+      <div
+        style={{
+          width: 36,
+          height: 36,
+          borderRadius: "50%",
+          border: "1px solid var(--border-subtle)",
+          background: "var(--bg-subtle)",
+          flexShrink: 0
+        }}
+      />
+    );
+  }
 
   return (
     <button
@@ -43,7 +64,7 @@ export function ThemeToggle() {
         color: "var(--text-muted)",
         cursor: "pointer",
         transition: "all 0.2s ease",
-        flexShrink: 0,
+        flexShrink: 0
       }}
     >
       {isDark ? (
