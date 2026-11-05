@@ -93,11 +93,23 @@ html[data-theme="dark"] .sidepanel-drawer,
 html[data-theme="dark"] .sidepanel-header,
 html[data-theme="dark"] .sidepanel-chips-tray,
 html[data-theme="dark"] .sidepanel-input-wrap,
+html[data-theme="dark"] .sidepanel-input,
 html[data-theme="dark"] .sidepanel-minimized-dock,
 html[data-theme="dark"] .floating-launcher-btn {
   background: var(--bg-surface) !important;
   color: var(--text-primary) !important;
   border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .sidepanel-input {
+  background: var(--bg-subtle) !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .sidepanel-input:focus {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent-primary) !important;
 }
 
 html[data-theme="dark"] .sidepanel-chat-area {
