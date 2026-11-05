@@ -158,23 +158,15 @@ export async function POST(req: Request) {
           }
         }
 
-        const errorText = await response.text();
-        console.warn(`[AI API Response Error]: ${response.status} - ${errorText}`);
-
-        let errorMessage = errorText;
-        try {
-          const parsed = JSON.parse(errorText);
-          errorMessage = parsed.error?.message || parsed.error || parsed.message || errorText;
-        } catch {
-          // keep as raw text
-        }
+        // If API hits rate limit (429) or error, gracefully fallback to local AI engine instead of showing technical API error notice
+        const localEngine = new AIAgentEngine();
+        const fallbackReply = localEngine.respond(trimmedMsg);
 
         return NextResponse.json({
-          reply: `⚠️ **AI Model Connection Notice**:\n\nThe API provider returned an error: **"${errorMessage}"** (HTTP ${response.status}).\n\n• The key provided (\`${grokApiKey.slice(0, 8)}...\`) was rejected by the API endpoint.\n• If you are using **xAI Grok**, official API keys start with \`xai-\` from [console.x.ai](https://console.x.ai).\n• If you are using **Groq (Free)**, keys start with \`gsk_\` from [console.groq.com](https://console.groq.com).\n• If you are using **Google Gemini (Free)**, keys start with \`AIzaSy\` from [aistudio.google.com](https://aistudio.google.com).\n\n*Please update \`GROK_API_KEY\` in your \`.env.local\` with a valid secret key.*`,
-          model: "diagnostic",
+          reply: fallbackReply,
+          model: "preview-engine",
           isRealAI: false,
-          needsApiKey: true,
-          error: errorMessage
+          needsApiKey: false
         });
       } catch (err) {
         console.error("[Grok API Network Error]:", err);
