@@ -95,7 +95,7 @@ export default function Home() {
         {/* ==========================================================================
             HERO / PROFILE INTRO
             ========================================================================== */}
-        <section className="hero-profile-box" id="about">
+        <section className="hero-profile-box scroll-reveal stagger-1" id="about">
           <div className="hero-avatar-wrap">
             <Image
               src="/assets/images/sheeladitya.png"

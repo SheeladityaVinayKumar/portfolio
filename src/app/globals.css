@@ -2029,3 +2029,143 @@ html[data-theme="dark"] .site-header {
   line-height: 1.55;
   color: #e2e8f0;
 }
+
+/* ==========================================================================
+   ADVANCED UI / VISUAL POLISH & MICRO-INTERACTIONS
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(234, 88, 12, 0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Interactive button press feedback */
+.btn-primary:active, .btn-secondary:active, .btn-copy:active, .nav-contact-btn:active, .nav-resume-btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* Glassmorphism gradient shine borders */
+.glow-card-border {
+  position: relative;
+}
+.glow-card-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.35), rgba(13, 148, 136, 0.35), transparent 60%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.glow-card-border:hover::after {
+  opacity: 1;
+}
+
+/* Smooth transitions for all cards */
+.clean-card, .metric-card, .project-card, .recruiter-card, .skill-col-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.clean-card:hover, .metric-card:hover, .project-card:hover, .recruiter-card:hover, .skill-col-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 36px -8px rgba(234, 88, 12, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   IMMERSIVE SCROLL & CLICK ANIMATIONS (EVERYTHING ANIMATES)
+   ========================================================================== */
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes ripplePulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.5); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(234, 88, 12, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+}
+
+@keyframes glowBorder {
+  0%, 100% { border-color: rgba(234, 88, 12, 0.25); box-shadow: 0 4px 20px rgba(234, 88, 12, 0.05); }
+  50% { border-color: rgba(234, 88, 12, 0.7); box-shadow: 0 8px 30px rgba(234, 88, 12, 0.2); }
+}
+
+.hero-avatar-wrap {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.pulse-dot {
+  animation: ripplePulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.recruiter-fast-track {
+  animation: glowBorder 4s ease-in-out infinite;
+}
+
+/* Universal Click & Press Spring Physics */
+button, a, .clean-card, .metric-card, .project-card, .recruiter-card, .skill-col-card, .badge-pill, .filter-pill, .sidepanel-chip {
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+button:hover, a:hover {
+  transform: translateY(-2px);
+}
+
+button:active, a:active {
+  transform: scale(0.92) translateY(2px) !important;
+}
+
+.clean-card:hover, .metric-card:hover, .project-card:hover, .recruiter-card:hover, .skill-col-card:hover {
+  transform: translateY(-6px) scale(1.015) !important;
+  box-shadow: 0 20px 45px -10px rgba(234, 88, 12, 0.2), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+  border-color: var(--accent-primary) !important;
+}
+
+/* Scroll Reveal & Smooth Parallax Animations */
+@keyframes scrollFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.clean-card, .metric-card, .project-card, .recruiter-card, .skill-col-card, section {
+  animation: scrollFadeUp linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+/* Header stays static at top without fading */
+.site-header {
+  animation: none !important;
+}
