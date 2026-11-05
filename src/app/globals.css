@@ -86,6 +86,52 @@ html[data-theme="dark"] {
   --shadow-drawer: -10px 0 35px rgba(0, 0, 0, 0.4);
 }
 
+/* Dark Mode explicit overrides for fixed-background components (Header, Footer, Chat Sidepanel, Floating Launcher) */
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .sidepanel-drawer,
+html[data-theme="dark"] .sidepanel-header,
+html[data-theme="dark"] .sidepanel-chips-tray,
+html[data-theme="dark"] .sidepanel-input-wrap,
+html[data-theme="dark"] .sidepanel-minimized-dock,
+html[data-theme="dark"] .floating-launcher-btn {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .sidepanel-chat-area {
+  background: var(--bg-page) !important;
+}
+
+html[data-theme="dark"] .chat-bubble.assistant {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .recruiter-card,
+html[data-theme="dark"] .skill-col-card,
+html[data-theme="dark"] .clean-card,
+html[data-theme="dark"] .metric-card,
+html[data-theme="dark"] .project-card {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+html[data-theme="dark"] .recruiter-ai-ask-btn,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .filter-pill,
+html[data-theme="dark"] .sidepanel-chip,
+html[data-theme="dark"] .sidepanel-input,
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-textarea {
+  background: var(--bg-subtle) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-subtle) !important;
+}
+
 /* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
