@@ -76,11 +76,12 @@ Developed during SDE internship at ColoredCow:
     }
 
     if (isPlatformQuery && isWebSpecific) {
-      return `### 🌐 Enterprise Live E-Commerce Web Platform
-The central digital platform maintained during Sheeladitya's internship:
+      return `### 🌐 Non-Profit E-Commerce Web Platform (Environmental Conservation)
+Built and fixed features for a client's e-commerce platform built for a non-profit working in environmental conservation — across the storefront and purchase journey, from product pages through checkout to order handling:
 
-• **What it is**: A high-traffic enterprise e-commerce portal where thousands of individuals and corporate partners purchase products, sponsor initiatives, and calculate carbon footprints.
+• **What it is**: A high-traffic e-commerce portal where thousands of individuals and corporate partners purchase products, sponsor initiatives, and calculate carbon footprints.
 • **Sheeladitya's Engineering Impact**:
+  - Built and fixed features across storefront, product pages, checkout and order handling; tested every change end to end before release and traced behaviour mismatches to root cause.
   - Audited and updated mission-critical WordPress & WooCommerce plugins.
   - Eliminated stylesheet conflict regressions and patched mobile responsive layout glitches across donation and checkout funnels.
   - Preserved **100% production uptime** during live transactions and high-volume traffic drives.`;
@@ -161,11 +162,12 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
 
     // 6. Experience at ColoredCow
     if (q.includes("experience") || q.includes("coloredcow") || q.includes("job") || q.includes("intern") || q.includes("trainee") || q.includes("sde")) {
-      return `Sheeladitya worked as a **Software Development Engineer (SDE) Intern at ColoredCow** (November 2025 – September 2026), supporting engineering across enterprise web platforms and internal field operations:
-• **Enterprise E-Commerce Web**: Audited plugins and resolved responsive layout regressions across donation & checkout funnels with 100% uptime.
+      return `Sheeladitya worked as a **Software Development Engineer (SDE) Intern at ColoredCow** (20 November 2025 – 30 September 2026), supporting engineering across web platforms and internal field operations:
+• **Non-Profit E-Commerce Web**: Built/fixed features across storefront, product pages, checkout and order handling for a non-profit in environmental conservation; tested every change end to end before release and traced behaviour mismatches to root cause. Audited plugins and resolved responsive layout regressions across donation & checkout funnels with 100% uptime.
+• **ColoredCow Corporate Website**: Built web pages using AI-enabled processes, taking each page from design through to published page — using AI-assisted development every day.
 • **Companion Mobile App**: Resolved push notifications & permission pop-up issues for 50,000+ users on Google Play & App Store.
 • **Field Operations App**: Added multi-tier pre-flight image-upload validation checks and fixed authentication login bugs in field operations.
-• **Collaborative Workflows**: Used professional team-based Git/GitHub PR reviews and incorporated senior engineering feedback.`;
+• **Team Workflows**: Shipped on schedule, kept the team informed, and used professional Git/GitHub PR reviews incorporating senior engineering feedback.`;
     }
 
     // 7. Technical Skills
@@ -174,7 +176,7 @@ Maintained an active **e-commerce web platform** and a **companion mobile applic
 • **Web & UI Systems**: React, Next.js, Modern JavaScript (ES6+), HTML5, CSS3, Responsive Design.
 • **Backend**: Python, Django, PHP, RESTful APIs, Session & Authentication logic.
 • **CMS & Web Platforms**: WordPress, Plugin maintenance & updates, UI troubleshooting.
-• **Tools & Practices**: Git, GitHub Pull Requests, Code Reviews, Input/Upload Validation, Debugging & Bug Resolution.`;
+• **Tools & Practices**: AI-Assisted Development (used daily at ColoredCow), Git, GitHub Pull Requests, End-to-End Testing, Code Reviews, Input/Upload Validation, Debugging & Bug Resolution.`;
     }
 
     // 8. Education
