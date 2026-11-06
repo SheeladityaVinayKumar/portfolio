@@ -569,11 +569,6 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-
-              <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 8, fontSize: "0.84rem", color: "var(--text-muted)" }}>
-                <span className="pulse-dot"></span>
-                <span>Location: {profile.location}</span>
-              </div>
             </div>
 
             {/* Quick Contact Form */}
