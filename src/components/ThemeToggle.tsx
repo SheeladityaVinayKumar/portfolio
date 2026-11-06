@@ -1,18 +1,53 @@
 "use client";
 
-import React, { useSyncExternalStore } from "react";
+import React, { useEffect, useSyncExternalStore } from "react";
 
-const subscribe = () => () => {};
+const THEME_EVENT = "theme-changed";
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(THEME_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(THEME_EVENT, onStoreChange);
+  };
+}
+
+function getSnapshot(): boolean {
+  // data-theme attribute is the source of truth after the pre-paint
+  // script in layout.tsx has run; fall back to localStorage on first read.
+  if (document.documentElement.hasAttribute("data-theme")) {
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  }
+  return localStorage.getItem("theme") === "dark";
+}
+
+function getServerSnapshot(): boolean {
+  return false;
+}
 
 export function ThemeToggle() {
-  const isDark = useSyncExternalStore(
-    subscribe,
-    () => typeof window !== "undefined" && localStorage.getItem("theme") === "dark",
-    () => false
-  );
+  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  // Keep <html data-theme> + <meta theme-color> in sync with localStorage.
+  // Runs on mount (restores saved theme even if the pre-paint script
+  // didn't run, e.g. without JS) and whenever the theme changes.
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    // If something else already set the attribute (pre-paint script),
+    // trust it; otherwise apply the saved preference.
+    if (!document.documentElement.hasAttribute("data-theme") && saved === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) {
+      meta.content = getSnapshot() ? "#0f0f0f" : "#fafbfc";
+    }
+  }, []);
 
   const toggle = () => {
-    const next = !isDark;
+    const next = !getSnapshot();
     if (next) {
       document.documentElement.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
@@ -20,6 +55,14 @@ export function ThemeToggle() {
       document.documentElement.removeAttribute("data-theme");
       localStorage.setItem("theme", "light");
     }
+
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) {
+      meta.content = next ? "#0f0f0f" : "#fafbfc";
+    }
+
+    // Notify useSyncExternalStore (same tab) + other tabs via storage event
+    window.dispatchEvent(new Event(THEME_EVENT));
     window.dispatchEvent(new Event("storage"));
   };
 
@@ -28,7 +71,9 @@ export function ThemeToggle() {
       onClick={toggle}
       type="button"
       title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      aria-label="Toggle dark mode"
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={isDark}
+      suppressHydrationWarning
       style={{
         display: "flex",
         alignItems: "center",
