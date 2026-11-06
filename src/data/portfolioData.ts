@@ -50,20 +50,20 @@ export const PORTFOLIO_DATA = {
     linkedinUrl: "https://linkedin.com/in/sheeladitya-vinay-kumar",
     educationBrief: "B.Tech CSE · BTKIT (2023–2027)",
     summary:
-      "Software Development Engineer (SDE) Intern at ColoredCow with practical experience resolving application bugs and improving user-facing workflows across mobile apps and websites. Worked on push notifications, permission prompts, login functionality, image-upload validation, website plugin updates, and UI fixes. Familiar with collaborative Git/GitHub workflows and focused on building reliable, maintainable software that solves real user problems."
+      "Software Development Engineer (SDE) Intern at ColoredCow (20 Nov 2025 – 30 Sep 2026) building and fixing features across a client's e-commerce platform for a non-profit in environmental conservation — from storefront and product pages through checkout to order handling — and web pages for ColoredCow's own site using AI-enabled processes from design to published page. Tested every change end to end before release, traced behaviour mismatches to root cause, and shipped on schedule in a working engineering team. Also resolved push notifications, permission prompts, login, image-upload validation, and UI issues across mobile apps and websites, using AI-assisted development daily in collaborative Git/GitHub workflows."
   },
 
   metrics: [
     {
       value: "10 Months",
       label: "Software Engineering Experience",
-      detail: "Hands-on software development at ColoredCow",
+      detail: "20 Nov 2025 – 30 Sep 2026 · ColoredCow",
       accent: "indigo" as const
     },
     {
       value: "3 Production Projects",
       label: "Real-world Applications & Ecosystems",
-      detail: "Mobile apps & NGO e-commerce platform",
+      detail: "Non-profit environmental conservation e-commerce platform & mobile apps",
       accent: "emerald" as const
     },
     {
@@ -123,11 +123,13 @@ export const PORTFOLIO_DATA = {
     {
       title: "Tools & Development Practices",
       icon: "🛠️",
-      subtitle: "Version control, validation & QA pipelines",
+      subtitle: "AI-assisted dev, version control & QA",
       skills: [
         { name: "Git", featured: true },
         { name: "GitHub Pull Requests", featured: true },
+        { name: "AI-Assisted Development", featured: true },
         { name: "Issue Resolution", featured: false },
+        { name: "End-to-End Testing", featured: false },
         { name: "Input & Image Validation", featured: false },
         { name: "Push Notifications", featured: false },
         { name: "Permission Prompts", featured: false }
@@ -138,27 +140,29 @@ export const PORTFOLIO_DATA = {
   projects: [
     {
       id: "web-ecommerce-platform",
-      title: "Enterprise E-Commerce Platform & Web Architecture",
-      subtitle: "High-Traffic Web Platform · Plugin Audits & Responsive Patches",
+      title: "Non-Profit E-Commerce Platform & Web Architecture",
+      subtitle: "Environmental Conservation Storefront · Purchase Journey, Checkout & Order Handling",
       category: "web",
-      categoryLabel: "E-Commerce Web Platform",
+      categoryLabel: "Non-Profit E-Commerce Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "amber",
       image: "",
-      impactMetric: "Maintained 100% production uptime during major CMS plugin audits & responsive checkout patches",
+      impactMetric: "Maintained 100% production uptime across storefront, checkout and order handling",
       summary:
-        "Maintained high-traffic enterprise e-commerce web platforms, auditing mission-critical CMS plugins, eliminating stylesheet conflicts, and patching mobile responsive layout bugs across donation and checkout funnels.",
+        "Built and fixed features across a non-profit environmental conservation e-commerce platform's storefront and purchase journey — from product pages through checkout to order handling. Audited mission-critical CMS plugins, eliminated stylesheet conflicts, and patched mobile responsive bugs.",
       tech: ["WordPress", "E-Commerce Architecture", "PHP", "JavaScript", "Plugin Maintenance", "Responsive UI"],
       overview:
-        "Managed and updated plugins on live enterprise and foundation web platforms, resolving plugin deprecations, conflict regressions, and responsive layout issues across transaction funnels.",
+        "Built and fixed features for a client's e-commerce platform serving a non-profit in environmental conservation. Worked across the storefront and full purchase journey — product pages, checkout, and order handling — testing every change end to end before release. Where platform behaviour didn't match the requirement, traced the cause and saw it through to a fix.",
       problem:
         "Outdated plugins caused checkout conflicts and security vulnerabilities, while legacy CSS rules distorted mobile responsiveness during high-traffic user events.",
       solution:
-        "Executed systematic plugin updates, sanitized legacy hook calls, resolved conflicting stylesheet rules across checkout pages, and validated responsive layout integrity.",
+        "Executed systematic plugin updates, sanitized legacy hook calls, resolved conflicting stylesheet rules across checkout pages, traced cause to fix, and validated responsive layout integrity end to end.",
       highlights: [
+        "Built/fixed features across storefront and purchase journey (product pages → checkout → order handling) for a non-profit environmental conservation client.",
+        "Tested every change end to end before release and traced behaviour mismatches to root cause.",
         "Maintained continuous uptime during live production plugin updates and e-commerce transactions.",
         "Troubleshot and fixed multi-device CSS breakpoint glitches across key landing & checkout pages.",
-        "Enhanced form submission responsiveness and web asset loading times.",
+        "Shipped on schedule and kept the team informed in a working engineering team.",
         "Collaborated via GitHub PR workflows incorporating senior engineering reviews."
       ],
       repoType: "client",
@@ -195,23 +199,25 @@ export const PORTFOLIO_DATA = {
     {
       id: "corporate-web-platform",
       title: "ColoredCow Corporate Web Platform — UI & Responsive Updates",
-      subtitle: "Corporate Web Platform · UI & Responsive Optimization",
+      subtitle: "Corporate Web Platform · AI-Enabled Design-to-Published Pages",
       category: "web",
       categoryLabel: "Corporate Web Platform",
       badge: "ColoredCow Engineering",
       badgeAccent: "indigo",
       image: "",
-      impactMetric: "Enhanced UI responsiveness & component reliability across corporate web portal",
+      impactMetric: "Built web pages using AI-enabled processes from design through to published page",
       summary:
-        "Contributed to the design, maintenance, and platform updates for ColoredCow's corporate web platform. Implemented modern UI updates, optimized responsive layouts across desktop and mobile viewports, and audited web components for cross-browser compatibility.",
-      tech: ["Web Architecture", "UI / UX", "Responsive Design", "Frontend Development", "Git / GitHub"],
+        "Built web pages for ColoredCow's corporate website using AI-enabled processes, taking each page from design through to a published page. Implemented modern UI updates, optimized responsive layouts, and audited web components for cross-browser compatibility.",
+      tech: ["Web Architecture", "UI / UX", "Responsive Design", "Frontend Development", "AI-Assisted Development", "Git / GitHub"],
       overview:
-        "Contributed to frontend updates and maintenance of corporate web platforms, focusing on responsive UI enhancements, component consistency, and cross-device performance.",
+        "Built web pages for ColoredCow's own web presence using AI-enabled processes — owning each page from design through to published page — alongside frontend updates, responsive UI enhancements, and cross-device performance.",
       problem:
         "Maintaining high design fidelity, fast asset loading, and flawless mobile responsiveness across diverse device viewports was essential for brand engagement.",
       solution:
-        "Optimized frontend components, refined CSS styling and layout breakpoints, and verified responsive rendering across mobile and desktop browsers.",
+        "Used AI-assisted development daily to build pages from design to published, optimized frontend components, refined CSS styling and layout breakpoints, and verified responsive rendering across mobile and desktop browsers.",
       highlights: [
+        "Built web pages using AI-enabled processes, owning each page from design through to published page.",
+        "Used AI-assisted development every day — how ColoredCow builds today.",
         "Updated and refined UI components across web portals for seamless cross-device rendering.",
         "Enhanced mobile responsiveness and layout stability across diverse viewport dimensions.",
         "Collaborated with engineering teams via GitHub pull requests and design reviews.",
@@ -254,12 +260,14 @@ export const PORTFOLIO_DATA = {
     {
       role: "Software Development Engineer (SDE) Intern",
       company: "ColoredCow",
-      period: "November 2025 – September 2026",
+      period: "20 November 2025 – 30 September 2026",
       type: "Internship",
       points: [
-        "Successfully completed Software Engineering Internship at ColoredCow, earning formal internship completion recognition.",
-        "Contributed to enterprise web platforms and corporate websites: implemented UI updates, optimized responsive layouts across devices, and enhanced frontend performance.",
-        "Maintained and audited mission-critical CMS plugins, eliminated stylesheet conflicts, and patched mobile responsive layout bugs across transaction funnels with 100% production uptime.",
+        "Successfully completed Software Engineering Internship at ColoredCow (20 Nov 2025 – 30 Sep 2026), earning formal internship completion recognition.",
+        "Built and fixed features for a client's e-commerce platform built for a non-profit working in environmental conservation — across the storefront and purchase journey, from product pages through checkout to order handling.",
+        "Tested every change end to end before release; where platform behaviour didn't match the requirement, traced the cause and saw it through to a fix. Audited mission-critical CMS plugins and patched responsive layout bugs with 100% production uptime.",
+        "Built web pages for ColoredCow's own website using AI-enabled processes, taking each page from design through to a published page — using AI-assisted development every day, which is how ColoredCow builds today.",
+        "Shipped on schedule, kept the team informed, and gained real experience building software inside a working engineering team.",
         "Maintained and debugged enterprise companion mobile applications, resolving critical push-notification delivery drops and device permission blockers (camera, storage, geolocation) across 50,000+ users on Google Play and App Store.",
         "Engineered client-side pre-flight image upload validation (file size constraints, MIME integrity checks) and debugged session authentication in internal field operations apps, preventing app crashes in low-bandwidth regions.",
         "Contributed to clean code standards across team-based Git/GitHub workflows, authoring focused pull requests and actively incorporating senior engineering feedback."
@@ -278,8 +286,16 @@ export const PORTFOLIO_DATA = {
 
   developmentPractices: [
     {
+      title: "AI-Assisted Development",
+      desc: "Used AI-enabled processes daily at ColoredCow — built web pages from design through to published page and shipped in a working team."
+    },
+    {
+      title: "End-to-End Testing & Root-Cause Analysis",
+      desc: "Tested every change end to end before release; traced behaviour mismatches to root cause and saw them through to a fix."
+    },
+    {
       title: "Collaborative Version Control",
-      desc: "Daily Git/GitHub workflows, pull requests, code reviews, and iterative feedback refinement."
+      desc: "Daily Git/GitHub workflows, pull requests, code reviews, and iterative feedback refinement. Shipped on schedule and kept the team informed."
     },
     {
       title: "Form & Image Upload Validation",
