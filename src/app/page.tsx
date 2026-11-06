@@ -201,7 +201,7 @@ export default function Home() {
               <div className="recruiter-card-icon">⚡</div>
               <div className="recruiter-card-title">Production Proof</div>
               <div className="recruiter-card-desc">
-                1+ Year as SDE Intern at <strong>ColoredCow</strong> &middot; Shipped fixes on apps in Google Play &amp; Apple App Store
+                10 Months as SDE Intern at <strong>ColoredCow</strong> &middot; Shipped fixes on apps in Google Play &amp; Apple App Store
               </div>
             </div>
 
