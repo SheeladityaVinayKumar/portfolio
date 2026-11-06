@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 interface HeroBentoProps {
   onOpenAIAgent: (initialPrompt?: string) => void;

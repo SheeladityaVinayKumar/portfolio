@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AIAgentModal } from "@/components/AIAgentModal";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 export default function Home() {
   const [isAIAgentOpen, setIsAIAgentOpen] = useState(false);

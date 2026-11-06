@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 interface ContactBentoProps {
   onShowToast: (msg: string) => void;

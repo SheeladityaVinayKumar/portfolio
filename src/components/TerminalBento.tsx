@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 interface TerminalBentoProps {
   onOpenAIAgent: () => void;

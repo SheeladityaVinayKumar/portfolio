@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 import { AIAgentEngine } from "@/lib/aiAgentEngine";
 
 function buildSystemPrompt(): string {

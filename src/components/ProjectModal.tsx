@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ProjectItem } from "@/data/portfolioData";
+import { ProjectItem } from "@/data/strangerKnowledge";
 
 interface ProjectModalProps {
   project: ProjectItem | null;

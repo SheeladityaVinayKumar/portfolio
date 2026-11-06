@@ -1,4 +1,4 @@
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 export interface ChatMessage {
   id: string;
