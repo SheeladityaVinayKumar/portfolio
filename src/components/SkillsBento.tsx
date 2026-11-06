@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 export function SkillsBento() {
   const { skillCategories } = PORTFOLIO_DATA;

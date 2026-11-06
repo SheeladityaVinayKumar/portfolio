@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 
 export function Footer() {
   const currentYear = 2026;

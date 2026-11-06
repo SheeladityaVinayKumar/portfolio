@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { PORTFOLIO_DATA, ProjectItem } from "@/data/portfolioData";
+import { PORTFOLIO_DATA, ProjectItem } from "@/data/strangerKnowledge";
 
 interface ProjectsBentoProps {
   onSelectProject: (project: ProjectItem) => void;

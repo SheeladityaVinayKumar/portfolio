@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { PORTFOLIO_DATA } from "@/data/strangerKnowledge";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {

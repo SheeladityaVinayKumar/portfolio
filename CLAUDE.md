@@ -26,7 +26,7 @@ Interactive developer portfolio website featuring Bento-grid layout, terminal si
   - `AIAgentModal.tsx` - Interactive AI assistant modal
   - `HeroBento.tsx`, `ProjectsBento.tsx`, `SkillsBento.tsx`, `ExperienceBento.tsx`, `ContactBento.tsx`, `TerminalBento.tsx` - Bento grid tiles
   - `Header.tsx`, `Footer.tsx`, `Toast.tsx`
-- `src/data/` - Static data (`portfolioData.ts`)
+- `src/data/` - Site content + Stranger AI knowledge base (`strangerKnowledge.ts`)
 - `src/lib/` - Shared utilities and AI engines (`aiAgentEngine.ts`)
 
 ## Coding Conventions
