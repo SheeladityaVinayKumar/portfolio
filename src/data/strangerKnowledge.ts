@@ -89,10 +89,10 @@ export const PORTFOLIO_DATA = {
         { name: "React", featured: true },
         { name: "Next.js", featured: true },
         { name: "JavaScript (ES6+)", featured: true },
-        { name: "HTML5 & Semantic Web", featured: false },
-        { name: "CSS3 / Modern UI", featured: false },
-        { name: "Responsive Layouts", featured: false },
-        { name: "UI Troubleshooting", featured: false }
+        { name: "HTML5 & Semantic Web", featured: true },
+        { name: "CSS3 / Modern UI", featured: true },
+        { name: "Responsive Layouts", featured: true },
+        { name: "UI Troubleshooting", featured: true }
       ]
     },
     {
@@ -103,9 +103,9 @@ export const PORTFOLIO_DATA = {
         { name: "Python", featured: true },
         { name: "Django", featured: true },
         { name: "PHP", featured: true },
-        { name: "RESTful APIs", featured: false },
-        { name: "Login & Auth Functionality", featured: false },
-        { name: "Session Handling", featured: false }
+        { name: "RESTful APIs", featured: true },
+        { name: "Login & Auth Functionality", featured: true },
+        { name: "Session Handling", featured: true }
       ]
     },
     {
@@ -114,10 +114,10 @@ export const PORTFOLIO_DATA = {
       subtitle: "Plugin architecture & website maintenance",
       skills: [
         { name: "WordPress", featured: true },
-        { name: "Plugin Updates & Audit", featured: false },
-        { name: "UI Fixes & Styling Patches", featured: false },
-        { name: "Cross-Browser Compatibility", featured: false },
-        { name: "Workflow Optimization", featured: false }
+        { name: "Plugin Updates & Audit", featured: true },
+        { name: "UI Fixes & Styling Patches", featured: true },
+        { name: "Cross-Browser Compatibility", featured: true },
+        { name: "Workflow Optimization", featured: true }
       ]
     },
     {
@@ -128,11 +128,11 @@ export const PORTFOLIO_DATA = {
         { name: "Git", featured: true },
         { name: "GitHub Pull Requests", featured: true },
         { name: "AI-Assisted Development", featured: true },
-        { name: "Issue Resolution", featured: false },
-        { name: "End-to-End Testing", featured: false },
-        { name: "Input & Image Validation", featured: false },
-        { name: "Push Notifications", featured: false },
-        { name: "Permission Prompts", featured: false }
+        { name: "Issue Resolution", featured: true },
+        { name: "End-to-End Testing", featured: true },
+        { name: "Input & Image Validation", featured: true },
+        { name: "Push Notifications", featured: true },
+        { name: "Permission Prompts", featured: true }
       ]
     }
   ] as SkillCategory[],

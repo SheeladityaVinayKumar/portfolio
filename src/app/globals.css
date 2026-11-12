@@ -1068,7 +1068,8 @@ html[data-theme="dark"] .site-header {
 
 .skill-item-row {
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
